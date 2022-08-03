@@ -40,9 +40,10 @@ M.setup = function()
       local cut_suffix_fname = fname:sub(1, #fname - #'.lua')
       if helper_set[cut_suffix_fname] == nil then
         local file = "user.conf." .. cut_suffix_fname
-        local status_ok, _ = pcall(require, file)
+        local status_ok, r = pcall(require, file)
         if not status_ok then
           vim.notify('Failed loading ' .. fname, vim.log.levels.ERROR)
+          vim.notify(r)
         end
       end
     end

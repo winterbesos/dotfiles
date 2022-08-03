@@ -36,6 +36,7 @@ packer.init {
     --   return require("packer.util").float { border = "rounded" }
     -- end,
   },
+  max_jobs = 10,
 }
 
 
@@ -86,7 +87,6 @@ return packer.startup(function(use)
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
-    tag = "nvim-0.6",
   }
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -293,6 +293,8 @@ return packer.startup(function(use)
   use "Pocco81/AutoSave.nvim"
   use "djoshea/vim-autoread"
   -- use "chipsenkbeil/distant.nvim"
+
+  use "tpope/vim-rails"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
