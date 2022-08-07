@@ -31,6 +31,7 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  max_jobs = 10,
   display = {
     -- open_fn = function()
     --   return require("packer.util").float { border = "rounded" }
@@ -221,6 +222,7 @@ return packer.startup(function(use)
   -- use "navarasu/onedark.nvim"
   use({
     "catppuccin/nvim",
+    as = "catppuccin",
   })
   use {
     "projekt0n/github-nvim-theme",
@@ -291,9 +293,10 @@ return packer.startup(function(use)
   }
   use { 'michaelb/sniprun', run = 'bash ./install.sh' }
   -- use "ravenxrz/DoxygenToolkit.vim"
-  use "Pocco81/AutoSave.nvim"
+  -- use "Pocco81/auto-save.nvim"
   use "djoshea/vim-autoread"
   -- use "chipsenkbeil/distant.nvim"
+  use "mileszs/ack.vim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
