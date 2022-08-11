@@ -109,7 +109,6 @@ return packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    commit = "44b7c8100269161e20d585f24bce322f6dcdf8d2",
   }
   use {
     "nvim-treesitter/nvim-treesitter-textobjects",
