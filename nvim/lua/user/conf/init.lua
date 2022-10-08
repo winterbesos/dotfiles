@@ -30,6 +30,8 @@ M.setup = function()
     "winshift",
     "toggleterm",
     "nvim-spectre",
+    "vim-ultest",
+    "autosave",
   }
 
   local helper_set = {}

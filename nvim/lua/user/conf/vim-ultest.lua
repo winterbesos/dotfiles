@@ -1,3 +1,8 @@
+local status_ok, ultest  = pcall(require, "ultest")
+if not status_ok then
+  return
+end
+
 vim.cmd [[
   let g:ultest_virtual_text = 1
   let g:ultest_pass_sign = ""
@@ -11,7 +16,7 @@ vim.cmd [[
 
 
 -- dap config
-require("ultest").setup({
+ultest.setup({
   builders = {
     ["go#gotest"] = function(cmd)
       local args = {}

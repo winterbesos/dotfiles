@@ -278,6 +278,7 @@ return packer.startup(function(use)
     opt = true,
     cmd = "PreviewMarkdown",
   } -- NOTE:: glow required : https://github.com/charmbracelet/glow
+
   use "voldikss/vim-translator"
   use "mtdl9/vim-log-highlighting"
   use "Pocco81/HighStr.nvim"
@@ -286,10 +287,10 @@ return packer.startup(function(use)
   -- use "henriquehbr/nvim-startup.lua"
   -- use "AckslD/nvim-neoclip.lua"
   use "vim-test/vim-test"
-  use {
-    "rcarriga/vim-ultest",
-    run = ":UpdateRemotePlugins"
-  }
+  -- use {
+  --   "rcarriga/vim-ultest",
+  --   run = ":UpdateRemotePlugins"
+  -- }
   use { 'michaelb/sniprun', run = 'bash ./install.sh' }
   -- use "ravenxrz/DoxygenToolkit.vim"
   -- use "Pocco81/auto-save.nvim"
