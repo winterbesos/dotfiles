@@ -121,6 +121,22 @@ keymap("n", "mA", "<cmd>Telescope vim_bookmarks all<cr>", opts)
 keymap("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
 keymap("n", "<leader>u", "<cmd>Trouble lsp_references<cr>", opts)
 
+
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "<leader>t", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+-- keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+-- keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>u", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+keymap("n", "<A-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+-- keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+keymap("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+keymap("n", "gl", '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+keymap("n", "<leader>dq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+
 -- calltree
 keymap("n", "<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
 

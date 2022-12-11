@@ -23,7 +23,7 @@ M.setup = function()
         local file = "conf." .. cut_suffix_fname
         local status_ok, r = pcall(require, file)
         if not status_ok then
-          vim.notify('Failed loading ' .. fname, vim.log.levels.ERROR)
+          -- vim.notify('Failed loading ' .. fname, vim.log.levels.ERROR)
           vim.notify(r)
         end
       end
