@@ -149,7 +149,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
   -- use "quangnguyen30192/cmp-nvim-tags"
-  use "jsfaint/gen_tags.vim"
+  -- use "jsfaint/gen_tags.vim"
   use "ray-x/cmp-treesitter"
   use "f3fora/cmp-spell" -- spell check
   -- use "github/copilot.vim"  -- Copilot setup,
@@ -203,8 +203,7 @@ return packer.startup(function(use)
 
   -- Git
   use {
-    "lewis6991/gitsigns.nvim",
-    tag = "v0.4",
+    "lewis6991/gitsigns.nvim"
   }
   use 'sindrets/diffview.nvim'
   -- use "tanvirtin/vgit.nvim"
@@ -291,6 +290,7 @@ return packer.startup(function(use)
   use "djoshea/vim-autoread"
   -- use "chipsenkbeil/distant.nvim"
 
+  use "mattn/emmet-vim"
   use "tpope/vim-rails"
 
   -- Automatically set up your configuration after cloning packer.nvim

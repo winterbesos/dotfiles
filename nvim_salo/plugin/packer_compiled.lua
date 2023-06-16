@@ -130,15 +130,15 @@ _G.packer_plugins = {
     path = "/Users/salo/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/Users/salo/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    url = "https://github.com/sindrets/diffview.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/salo/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
-  },
-  ["gen_tags.vim"] = {
-    loaded = true,
-    path = "/Users/salo/.local/share/nvim/site/pack/packer/start/gen_tags.vim",
-    url = "https://github.com/jsfaint/gen_tags.vim"
   },
   ["github-nvim-theme"] = {
     loaded = true,
@@ -264,6 +264,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/salo/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
     url = "https://github.com/folke/todo-comments.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/Users/salo/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["vim-bookmarks"] = {
     loaded = true,

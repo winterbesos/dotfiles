@@ -1,3 +1,12 @@
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/Development/flutter/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/Development/flutter/bin/cache/dart-sdk/bin/"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export LC_ALL=en_US.UTF-8
+
 # Functions
 source ~/.shell/functions.sh
 

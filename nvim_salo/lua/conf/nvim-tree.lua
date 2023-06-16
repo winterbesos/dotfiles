@@ -71,9 +71,6 @@ nvim_tree.setup({
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
-  open_on_setup = false,
-  open_on_setup_file = false,
   open_on_tab = false,
   sort_by = "name",
   view = {
@@ -85,18 +82,6 @@ nvim_tree.setup({
     number = false,
     relativenumber = false,
     signcolumn = "yes",
-    mappings = {
-      custom_only = false,
-      list = {
-        -- user mappings go here
-        { key = { "l", "<CR>", "o" }, action = "edit" },
-        { key = "h", action = "close_node" },
-        { key = "v", action = "vsplit" },
-        { key = "O", action = "cd" },
-        { key = "H", action = "toggle_git_ignored" },
-        { key = "D", action = "toggle_dotfiles" },
-      },
-    },
   },
   renderer = {
     indent_markers = {
@@ -120,7 +105,6 @@ nvim_tree.setup({
     update_cwd = true,
     ignore_list = {},
   },
-  ignore_ft_on_setup = {},
   system_open = {
     cmd = "",
     args = {},
@@ -186,7 +170,11 @@ nvim_tree.setup({
 
 --
 -- with relative path
-require "nvim-tree.events".on_file_created(function(file) vim.cmd("edit " .. file.fname) end)
+local api = require("nvim-tree.api")
+local Event = api.events.Event
+api.events.subscribe(Event.FileCreated, function(data)
+  vim.cmd("edit " .. file.fname)
+end)
 -- with absolute path
 -- require"nvim-tree.events".on_file_created(function(file) vim.cmd("edit "..vim.fn.fnamemodify(file.fname, ":p")) end)
 

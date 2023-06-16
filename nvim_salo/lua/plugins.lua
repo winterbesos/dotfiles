@@ -47,16 +47,25 @@ return require('packer').startup(function(use)
   use "folke/todo-comments.nvim" -- todo comments
   use "folke/which-key.nvim" -- which  key
 
+  -- Git
+  use {
+    "lewis6991/gitsigns.nvim"
+  }
+  use 'sindrets/diffview.nvim'
+
+
   -- UI
   -- Colorschemes
   use { "catppuccin/nvim", as = "catppuccin" }
   use "projekt0n/github-nvim-theme"
 
+  -- Terminal
+  use "akinsho/toggleterm.nvim" -- toggle terminal
+
   -- LSP
   use "williamboman/mason-lspconfig.nvim" -- enable LSP
   use "neovim/nvim-lspconfig"
   use { "williamboman/mason.nvim" }
-  -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "kosayoda/nvim-lightbulb" -- code action
   use "ray-x/lsp_signature.nvim" -- show function signature when typing
 
@@ -72,17 +81,13 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
-  use "jsfaint/gen_tags.vim"
+  -- use "jsfaint/gen_tags.vim"
   use "ray-x/cmp-treesitter"
   use "f3fora/cmp-spell" -- spell check
   use "ethanholz/nvim-lastplace" -- auto return back to the last modified positon when open a file
   use "nvim-pack/nvim-spectre" -- search and replace pane
   use "tpope/vim-repeat" --  . command enhance
   use "tpope/vim-surround" -- vim surround
-
-
-  -- Git
-  use "lewis6991/gitsigns.nvim"
 
   -- Language
   use "tpope/vim-rails"

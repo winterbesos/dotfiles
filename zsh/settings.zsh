@@ -29,7 +29,7 @@ KEYTIMEOUT=1 # corresponds to 10ms
 export EDITOR=nvim
 
 # Use vim style line editing in zsh
-bindkey -v
+# bindkey -v
 # Movement
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'G' end-of-buffer-or-history
@@ -44,6 +44,11 @@ bindkey '^H' backward-delete-char
 
 # Use incremental search
 bindkey "^R" history-incremental-search-backward
+
+#edit command in vi ctrl-x ctrl-e
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
 
 # Disable shell builtins
 disable r

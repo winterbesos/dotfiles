@@ -146,8 +146,8 @@ alias peek='tee >(cat 1>&2)'
 alias clc="clear"
 
 # proxy config for wsl
-hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-alias setss='export all_proxy="socks5://${hostip}:7890";'
+hostip=$(cat /etc/resolv.conf |grep -o '(?<=nameserver\ ).*')
+alias setss='export all_proxy="socks5://${hostip}:6153";'
 alias unsetss='unset all_proxy'
 
 #  windows exec aliases
