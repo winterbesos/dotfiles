@@ -6,7 +6,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "rcarriga/nvim-notify" -- notify
-  use "kyazdani42/nvim-web-devicons" -- icons
 
   -- Telescope
   use {
