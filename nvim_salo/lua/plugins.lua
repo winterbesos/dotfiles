@@ -33,9 +33,8 @@ return require('packer').startup(function(use)
   } -- enhance texetobject selection
   use "romgrk/nvim-treesitter-context" -- show class/function at the top
 
-  use {
-    "kyazdani42/nvim-tree.lua",
-  } -- file explore
+  use { "nvim-tree/nvim-tree.lua" } -- file explore
+  use { "nvim-tree/nvim-web-devicons" }
 
   use "nvim-lualine/lualine.nvim" -- status line
   use {
