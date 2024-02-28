@@ -1,0 +1,13 @@
+Host jenkins
+  HostName 10.9.21.226
+  User baseuser
+
+Host Van-Gogh
+  HostName macs.xsalo.com
+  User salo
+  Port 2222
+
+Host Da-Vinci
+  HostName macs.xsalo.com
+  User salo
+  Port 22222
