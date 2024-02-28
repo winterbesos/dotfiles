@@ -20,3 +20,6 @@
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "git-fuzzy"]
+	path = git-fuzzy
+	url = https://github.com/bigH/git-fuzzy.git

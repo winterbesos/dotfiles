@@ -20,6 +20,11 @@ return require('packer').startup(function(use)
   use "MattesGroeger/vim-bookmarks"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   -- use "nvim-telescope/telescope-dap.nvim"
+  use "mfussenegger/nvim-dap"
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = {'mfussenegger/nvim-dap'}
+  }
 
 
   -- Treesittetr
@@ -91,4 +96,7 @@ return require('packer').startup(function(use)
   use "tpope/vim-rails"
   use "mattn/webapi-vim"
   use "winterbesos/vim-blue"
+
+  use "github/copilot.vim"
+  use "vim-test/vim-test"
 end)

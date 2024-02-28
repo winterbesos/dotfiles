@@ -328,3 +328,5 @@ bindkey '^I' fzf-completion
   'unset' '__fzf_completion_options'
 }
 
+
+export PATH="/Users/salo/.config/dotfiles/git-fuzzy/bin:$PATH"
