@@ -1,7 +1,7 @@
 return {
   settings = {
     solargraph = {
-      commandPath = '/Users/salo/.rvm/gems/ruby-2.7.2/bin/solargraph',
+      commandPath = '/opt/homebrew/opt/solargraph/bin/solargraph',
       diagnostics = true,
       completion = true
     }

@@ -94,10 +94,4 @@ mason.setup({
 
 -- require("lspconfig").ruby_ls.setup {}
 require("lspconfig").solargraph.setup {}
-require("lspconfig").volar.setup {
-  init_options = {
-      typescript = {
-          tsdk = "/Users/salo/code/starunion-api-documents/lib/node_modules/typescript/lib"
-      }
-  }
-}
+require("lspconfig").pyright.setup {}
