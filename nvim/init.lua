@@ -1,10 +1,8 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.utils"
-
-require "user.conf"
-require "user.lsp"
-require "user.dap"
-
+require "options"
+require "keymaps"
+require "plugins"
+require "colorscheme"
+require "utils"
+require "conf"
+require "lsp"
+require "dap-conf"

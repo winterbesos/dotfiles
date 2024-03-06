@@ -1,5 +1,6 @@
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.gem/ruby/3.0.0/bin"
 export PATH="$PATH:$HOME/Development/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/Development/flutter/bin/cache/dart-sdk/bin/"
