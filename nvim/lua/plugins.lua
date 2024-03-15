@@ -32,13 +32,11 @@ return require('packer').startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  use {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  } -- enhance texetobject selection
+  use "nvim-treesitter/nvim-treesitter-textobjects"  -- enhance texetobject selection
   use "romgrk/nvim-treesitter-context" -- show class/function at the top
 
-  use { "nvim-tree/nvim-tree.lua" } -- file explore
-  use { "nvim-tree/nvim-web-devicons" }
+  use "nvim-tree/nvim-tree.lua" -- file explore
+  use "nvim-tree/nvim-web-devicons"
 
   use "nvim-lualine/lualine.nvim" -- status line
   use {
@@ -51,11 +49,8 @@ return require('packer').startup(function(use)
   use "folke/which-key.nvim" -- which  key
 
   -- Git
-  use {
-    "lewis6991/gitsigns.nvim"
-  }
+  use "lewis6991/gitsigns.nvim"
   use 'sindrets/diffview.nvim'
-
 
   -- UI
   -- Colorschemes
@@ -68,7 +63,7 @@ return require('packer').startup(function(use)
   -- LSP
   use "williamboman/mason-lspconfig.nvim" -- enable LSP
   use "neovim/nvim-lspconfig"
-  use { "williamboman/mason.nvim" }
+  use "williamboman/mason.nvim"
   use "kosayoda/nvim-lightbulb" -- code action
   use "ray-x/lsp_signature.nvim" -- show function signature when typing
 
