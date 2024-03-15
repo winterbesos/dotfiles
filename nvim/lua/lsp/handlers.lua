@@ -8,7 +8,11 @@ M.setup = function()
     { name = "DiagnosticSignHint", text = "" },
     { name = "DiagnosticSignInfo", text = "" },
 
-    { name = "DapBreakpoint", text = "🛑" },
+    { name = "DapBreakpoint", text = "" },
+    { name = "DapBreakpointCondition", text = "" },
+    { name = "DapLogPoint", text = "" },
+    { name = "DapBreakpointRejected", text = "" },
+    { name = "DapStopped", text = "󰁔" },
 
   }
 
