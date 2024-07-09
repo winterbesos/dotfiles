@@ -25,6 +25,9 @@ You can make local customizations for some programs by editing these files:
 * `hg` : `~/.hgrc_local`
 * `tmux` : `~/.tmux_local.conf`
 
+Font
+Hack Nerd Font Mono
+
 License
 -------
 
