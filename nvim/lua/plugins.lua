@@ -21,9 +21,10 @@ return require('packer').startup(function(use)
   use "tom-anders/telescope-vim-bookmarks.nvim"
   -- use "nvim-telescope/telescope-dap.nvim"
   use "mfussenegger/nvim-dap"
+  use "nvim-neotest/nvim-nio"
   use {
     'rcarriga/nvim-dap-ui',
-    requires = {'mfussenegger/nvim-dap'}
+    requires = {{'mfussenegger/nvim-dap'}, {'nvim-neotest/nvim-nio'}}
   }
 
 

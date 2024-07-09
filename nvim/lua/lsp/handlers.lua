@@ -13,9 +13,11 @@ M.setup = function()
     { name = "DapLogPoint", text = "" },
     { name = "DapBreakpointRejected", text = "" },
     { name = "DapStopped", text = "󰁔" },
-
   }
 
+  vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg=0, fg='#993939', bg='#31353f' })
+  vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg=0, fg='#61afef', bg='#31353f' })
+  vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg=0, fg='#98c379', bg='#31353f' })
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
@@ -54,12 +56,12 @@ local function lsp_highlight_document(client)
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
+        augroup lsp_document_highlight
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+      ]],
       false
     )
   end
@@ -86,7 +88,7 @@ end
 M.on_attach = function(client, bufnr)
   -- if client.name == "tsserver" or client.name == "clangd" then
     -- client.resolved_capabilities.document_formatting = false
-  -- end
+  -- en
   lsp_keymaps(bufnr)
   -- lsp_highlight_document(client)  -- use RRethy/vim-illuminate instead
 

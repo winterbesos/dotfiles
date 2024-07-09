@@ -61,3 +61,9 @@ fi
 if [ -f ~/.shell_private ]; then
     source ~/.shell_private
 fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/salo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/salo/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

@@ -5,6 +5,39 @@
 
 local dap = require('dap')
 
+dap.adapters["local-lua"] = {
+  type = "executable",
+  command = "node",
+  args = { "/Users/salo/vendor/local-lua-debugger-vscode/extension/debugAdapter.js"
+  },
+  enrich_config = function(config, on_config)
+    if not config["extensionPath"] then
+      local c = vim.deepcopy(config)
+      -- 💀 If this is missing or wrong you'll see 
+      -- "module 'lldebugger' not found" errors in the dap-repl when trying to launch a debug session
+      c.extensionPath = "/Users/salo/vendor/local-lua-debugger-vscode/"
+      on_config(c)
+    else
+      on_config(config)
+    end
+  end,
+}
+
+dap.configurations.lua = {
+  {
+    name = 'Current file (local-lua-dbg, lua)',
+    type = 'local-lua',
+    request = 'launch',
+    cwd = '${workspaceFolder}',
+    program = {
+      lua = 'lua',
+      file = '${file}',
+    },
+    args = {},
+  },
+}
+
+
 dap.adapters.lldb = {
   type = "executable",
   command = "/opt/homebrew/opt/llvm/bin/lldb-vscode",
@@ -33,38 +66,9 @@ dap.configurations.c = { -- 这里的配置也适用于C++
   },
 }
 
--- dap.adapters.python = function(cb, config)
---   if config.request == 'attach' then
---     ---@diagnostic disable-next-line: undefined-field
---     local port = (config.connect or config).port
---     ---@diagnostic disable-next-line: undefined-field
---     local host = (config.connect or config).host or '127.0.0.1'
---     cb({
---       type = 'server',
---       port = assert(port, '`connect.port` is required for a python `attach` configuration'),
---       host = host,
---       options = {
---         source_filetype = 'python',
---       },
---     })
---   else
---     cb({
---       type = 'executable',
---       -- command = '/Users/salo/.virtualenvs/debugpy/bin/python',
---       command = '/Users/salo/miniconda/envs/tf2/bin/python',
---       args = { '-m', 'debugpy.adapter' },
---       -- options = {
---       --   source_filetype = 'python',
---       -- },
---     })
---   end
--- end
-
 dap.adapters.python = {
   type = 'executable',
-  -- command = '/Users/salo/.virtualenvs/debugpy/bin/python',
-  command = '/opt/anaconda3/envs/tf2/bin/python',
-  -- command = '/opt/homebrew/bin/python3',
+  command = 'python',
   args = { '-m', 'debugpy.adapter' },
 }
 
@@ -79,22 +83,10 @@ dap.configurations.python = {
 
     program = "${file}"; -- This configuration will launch the current file if used.
     pythonPath = function()
-      return '/opt/anaconda3/envs/tf2/bin/python'
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-      -- local cwd = vim.fn.getcwd()
-      -- if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-      --   return cwd .. '/venv/bin/python'
-      -- elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-      --   return cwd .. '/.venv/bin/python'
-      -- else
-      --   return '/opt/homebrew/bin/python3'
-      -- end
+      return 'python'
     end;
   },
 }
-
 
 
 require("dapui").setup()
