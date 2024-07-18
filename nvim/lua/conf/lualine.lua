@@ -8,6 +8,15 @@ local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
 
+local is_dap_panel = function()
+  local prefix = 'dap'
+  return string.sub(vim.bo.filetype, 1, string.len(prefix)) == prefix
+end
+
+local hide_in_dap_panel = function()
+  return not is_dap_panel()
+end
+
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
@@ -16,6 +25,7 @@ local diagnostics = {
   colored = false,
   update_in_insert = false,
   always_visible = true,
+  cond = hide_in_dap_panel,
 }
 
 local diff = {
@@ -35,6 +45,7 @@ local mode = {
   fmt = function(str)
     return "-- " .. str .. " --"
   end,
+  cond = hide_in_dap_panel,
 }
 
 
@@ -54,21 +65,33 @@ local file_name = {
   },
 }
 
+local encoding = {
+  "encoding",
+  cond = hide_in_dap_panel,
+}
+
 local filetype = {
   "filetype",
   icons_enabled = false,
   icon = nil,
+  cond = hide_in_dap_panel,
 }
 
 local branch = {
   "branch",
   icons_enabled = true,
   icon = "",
+  cond = hide_in_dap_panel,
 }
 
 local location = {
   "location",
-  padding = 0,
+  padding = 1,
+}
+
+local fileformat = {
+  "fileformat",
+  cond = hide_in_dap_panel,
 }
 
 -- cool function for progress
@@ -76,14 +99,23 @@ local progress = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
   -- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local chars = { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", " ", }
+  local chars = { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", "  ", }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
-  return chars[index]
+
+  if not is_dap_panel() then
+    return chars[index]
+  else
+    return ''
+  end
 end
 
 local spaces = function()
-  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+  if not is_dap_panel() then
+    return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+  else
+    return ''
+  end
 end
 
 -- add gps module to get the position information
@@ -104,7 +136,7 @@ lualine.setup({
     lualine_a = { branch, diagnostics },
     lualine_b = { mode },
     lualine_c = { file_name },
-    lualine_x = { diff, spaces, "encoding", filetype, "fileformat" },
+    lualine_x = { diff, spaces, encoding, filetype, fileformat },
     lualine_y = { location },
     lualine_z = { progress },
   },
