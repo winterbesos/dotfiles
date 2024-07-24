@@ -134,7 +134,8 @@ function RPR_AT() {
 
 # Build the rhs prompt
 function RPR_INFO() {
-    echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
+    #echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
+    echo ""
 }
 
 # Set RHS prompt for git repositories

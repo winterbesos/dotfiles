@@ -8,15 +8,14 @@ return require('packer').startup(function(use)
   use "rcarriga/nvim-notify" -- notify
 
   -- Telescope
-  use {
-    "nvim-telescope/telescope.nvim",
-  }
+  use { "nvim-telescope/telescope.nvim" }
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'arch -arm64 make'
   }
   use "nvim-telescope/telescope-ui-select.nvim"
   use "nvim-telescope/telescope-rg.nvim"
+
   use "MattesGroeger/vim-bookmarks"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   -- use "nvim-telescope/telescope-dap.nvim"
@@ -48,6 +47,7 @@ return require('packer').startup(function(use)
   } -- welcome page
   use "folke/todo-comments.nvim" -- todo comments
   use "folke/which-key.nvim" -- which  key
+  use 'echasnovski/mini.nvim'
 
   -- Git
   use "lewis6991/gitsigns.nvim"
