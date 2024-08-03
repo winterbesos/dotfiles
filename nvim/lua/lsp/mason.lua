@@ -92,6 +92,10 @@ mason.setup({
 })
 
 
--- require("lspconfig").ruby_ls.setup {}
 require("lspconfig").solargraph.setup {}
 require("lspconfig").pyright.setup {}
+require("lspconfig").clangd.setup {
+  cmd = { "clangd", "--compile-commands-dir=build" },  -- 指定 compile_commands.json 文件所在目录
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  -- root_dir = nvim_lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+}

@@ -94,6 +94,8 @@ return require('packer').startup(function(use)
   use "mattn/webapi-vim"
   use "winterbesos/vim-blue"
 
-  use "github/copilot.vim"
+  -- use "github/copilot.vim"
   use "vim-test/vim-test"
+
+  use "Shatur/neovim-tasks"
 end)
