@@ -92,7 +92,7 @@ return require('packer').startup(function(use)
   -- Language
   use "tpope/vim-rails"
   use "mattn/webapi-vim"
-  use "winterbesos/vim-blue"
+--   use "winterbesos/vim-blue"
 
   -- use "github/copilot.vim"
   use "vim-test/vim-test"

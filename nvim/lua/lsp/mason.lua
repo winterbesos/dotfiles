@@ -93,9 +93,35 @@ mason.setup({
 
 
 require("lspconfig").solargraph.setup {}
-require("lspconfig").pyright.setup {}
+require("lspconfig").pyright.setup {
+  settings = {
+    python = {
+      pythonPath = "python",
+      analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          extraPaths = { vim.fn.getcwd() .. "/libs" },
+          autoSearchPaths = true,
+          typeCheckingMode = "basic",
+      },
+    },
+  }
+}
 require("lspconfig").clangd.setup {
-  cmd = { "clangd", "--compile-commands-dir=build" },  -- 指定 compile_commands.json 文件所在目录
+  cmd = { "clangd", "--compile-commands-dir=build", "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename", "--clang-tidy", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename" },
   filetypes = { "c", "cpp", "objc", "objcpp" },
-  -- root_dir = nvim_lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+  root_dir = require("lspconfig.util").root_pattern(".clangd", "compile_flags.txt", ".git"),
+  init_options = {
+    clangdFileStatus = true,
+    usePlaceholders = true,
+    completeUnimported = true,
+    semanticHighlighting = true,
+  },
+  settings = {
+    ccls = {
+      completion = {
+        filterAndSort = false,
+      },
+    },
+  },
 }

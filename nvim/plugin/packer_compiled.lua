@@ -300,11 +300,6 @@ _G.packer_plugins = {
     path = "/Users/salo/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  ["vim-blue"] = {
-    loaded = true,
-    path = "/Users/salo/.local/share/nvim/site/pack/packer/start/vim-blue",
-    url = "https://github.com/winterbesos/vim-blue"
-  },
   ["vim-bookmarks"] = {
     loaded = true,
     path = "/Users/salo/.local/share/nvim/site/pack/packer/start/vim-bookmarks",
