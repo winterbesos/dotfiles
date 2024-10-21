@@ -92,17 +92,26 @@ mason.setup({
 })
 
 
-require("lspconfig").solargraph.setup {}
+require("lspconfig").solargraph.setup {
+  settings = {
+    solargraph = {
+      commandPath = '/Users/salo/.gem/ruby/3.0.0/bin/solargraph',
+      diagnostics = true,
+      completion = true
+    }
+  }
+}
 require("lspconfig").pyright.setup {
+  root_dir = require("lspconfig").util.root_pattern('.git', 'pyrightconfig.json', 'setup.py', 'setup.cfg', 'pyproject.toml', 'scrapy.cfg'),
   settings = {
     python = {
       pythonPath = "python",
       analysis = {
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
-          extraPaths = { vim.fn.getcwd() .. "/libs" },
-          autoSearchPaths = true,
-          typeCheckingMode = "basic",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        extraPaths = { vim.fn.getcwd() .. "/libs" },
+        autoSearchPaths = true,
+        typeCheckingMode = "basic",
       },
     },
   }
