@@ -93,6 +93,7 @@ return require('packer').startup(function(use)
   use "tpope/vim-rails"
   use "mattn/webapi-vim"
 --   use "winterbesos/vim-blue"
+  use "preservim/tagbar"
 
   -- use "github/copilot.vim"
   use "vim-test/vim-test"
