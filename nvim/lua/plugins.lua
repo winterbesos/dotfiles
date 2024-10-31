@@ -97,6 +97,7 @@ return require('packer').startup(function(use)
 
   -- use "github/copilot.vim"
   use "vim-test/vim-test"
+  use "numToStr/Comment.nvim"
 
   use "Shatur/neovim-tasks"
 end)
