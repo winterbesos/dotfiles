@@ -38,4 +38,37 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- 自动跳转到下一个对象
+      keymaps = {
+        ["af"] = "@function.outer", -- 选择整个函数
+        ["if"] = "@function.inner", -- 选择函数内部
+        ["ac"] = "@class.outer",    -- 选择整个类
+        ["ic"] = "@class.inner",    -- 选择类内部
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- 设置跳转点，可以使用 <C-o> 返回
+      goto_next_start = {
+        ["]f"] = "@function.outer", -- 跳转到下一个函数开始
+        ["]c"] = "@class.outer",    -- 跳转到下一个类开始
+      },
+      goto_next_end = {
+        ["]F"] = "@function.outer", -- 跳转到下一个函数结束
+        ["]C"] = "@class.outer",    -- 跳转到下一个类结束
+      },
+      goto_previous_start = {
+        ["[f"] = "@function.outer", -- 跳转到上一个函数开始
+        ["[c"] = "@class.outer",    -- 跳转到上一个类开始
+      },
+      goto_previous_end = {
+        ["[F"] = "@function.outer", -- 跳转到上一个函数结束
+        ["[C"] = "@class.outer",    -- 跳转到上一个类结束
+      },
+    },
+  },
 }

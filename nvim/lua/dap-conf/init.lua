@@ -100,6 +100,15 @@ dap.configurations.python = {
     pythonPath = function()
       return 'python'
     end;
+    justMyCode = false;
+  },
+    {
+    type = 'python';
+    request = 'launch';
+    name = "Launch file with GOT params";
+    program = "${file}";
+    args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", "/Users/salo/Downloads/image.webp", "--type", "ocr", "--device", "cpu"};
+    justMyCode = false;
   },
 }
 
