@@ -100,14 +100,28 @@ dap.configurations.python = {
     pythonPath = function()
       return 'python'
     end;
+    justMyCode = true;
+  },
+  {
+    -- The first three options are required by nvim-dap
+    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
+    request = 'launch';
+    name = "Launch file With External Code";
+
+    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+    program = "${file}"; -- This configuration will launch the current file if used.
+    pythonPath = function()
+      return 'python'
+    end;
     justMyCode = false;
   },
-    {
+  {
     type = 'python';
     request = 'launch';
     name = "Launch file with GOT params";
     program = "${file}";
-    args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", "/Users/salo/Downloads/image.webp", "--type", "ocr", "--device", "cpu"};
+    args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", "/Users/salo/Downloads/image.jpg", "--type", "ocr", "--device", "cpu"};
     justMyCode = false;
   },
 }

@@ -368,3 +368,12 @@ function TRAPUSR1() {
     # redisplay
     zle && zle reset-prompt
 }
+
+
+
+# spaceship configurations
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_USER_SHOW=always
+SPACESHIP_DIR_TRUNC_REPO=false
+SPACESHIP_HOST_SHOW="always"
+SPACESHIP_VI_MODE_SHOW="true"

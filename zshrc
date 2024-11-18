@@ -66,4 +66,3 @@ fi
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/salo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/salo/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-

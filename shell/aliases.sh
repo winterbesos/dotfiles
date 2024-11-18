@@ -10,6 +10,7 @@ alias grep='grep --color'
 alias ll='ls -lah'
 alias la='ls -A'
 alias l='ls'
+alias ls='lsd'
 
 # Aliases to protect against overwriting
 alias cp='cp -i'

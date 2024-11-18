@@ -7,6 +7,8 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
 source ~/.zsh/plugins/zsh-z.plugin.zsh
 
+source /opt/homebrew/opt/spaceship/spaceship.zsh
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 if [[ "$(tput colors)" == "256" ]]; then
