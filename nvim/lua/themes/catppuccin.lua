@@ -34,7 +34,9 @@ catppuccin.setup({
       operators = {},
   },
   color_overrides = {},
-  custom_highlights = {},
+  custom_highlights = {
+    CursorColumn = { bg = "#333333" }
+  },
   integrations = {
       cmp = true,
       gitsigns = true,

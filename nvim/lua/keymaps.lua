@@ -54,7 +54,7 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 keymap("n", "J", "mzJ`z", opts)
 -- keymap("n", "j", "jzz", opts)
--- keymap("n", "k", "kzz", opts)
+-- keymap("n" "k", "kzz", opts)
 
 -- Resize with arrows
 keymap("n", "<A-Up>", ":resize -2<CR>", opts)
@@ -81,7 +81,7 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
 -- Press jl fast to enter
-keymap("i", "jl", "<ESC>", opts)
+--- keymap("i", "jl", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -123,19 +123,19 @@ keymap("n", "<leader>u", "<cmd>Trouble lsp_references<cr>", opts)
 
 
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "<leader>t", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
--- keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
--- keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+keymap("n", "gl", '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>u", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<A-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
--- keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 keymap("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 keymap("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-keymap("n", "gl", '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 keymap("n", "<leader>dq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
+vim.cmd [[ command! FormatSync execute 'lua vim.lsp.buf.format({ async = false })' ]]
 
 -- calltree
 keymap("n", "<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
@@ -160,11 +160,7 @@ keymap('n', '<leader>j', ']c', opts)
 keymap('n', '<leader>k', '[c', opts)
 
 -- unit test
-keymap("n", "<leader>rr", "<cmd>UltestNearest<cr>", opts)
-keymap("n", "<leader>rd", "<cmd>UltestDebugNearest<cr>", opts)
-
--- comment
-keymap("n", "gcf", "<cmd>Dox<cr>", opts)
+keymap("n", "<leader>rr", "<cmd>TestNearest<cr>", opts)
 
 -- sniprun
 keymap("n", "<leader>rf", ":%SnipRun<cr>", opts)

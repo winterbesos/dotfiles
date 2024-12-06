@@ -27,6 +27,13 @@ return require('packer').startup(function(use)
     requires = {{'mfussenegger/nvim-dap'}, {'nvim-neotest/nvim-nio'}}
   }
 
+use "mxsdev/nvim-dap-vscode-js"
+use "theHamsta/nvim-dap-virtual-text"
+use {
+  "microsoft/vscode-js-debug",
+  opt = true,
+  run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+}
 
   -- Treesittetr
   use {
@@ -76,6 +83,7 @@ return require('packer').startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
 
   -- snippets
+  use { 'michaelb/sniprun', run = 'sh ./install.sh'}
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
@@ -100,4 +108,5 @@ return require('packer').startup(function(use)
   use "numToStr/Comment.nvim"
 
   use "Shatur/neovim-tasks"
+  use "lukas-reineke/indent-blankline.nvim"
 end)

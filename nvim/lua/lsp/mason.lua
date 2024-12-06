@@ -134,3 +134,47 @@ require("lspconfig").clangd.setup {
     },
   },
 }
+require('lspconfig').eslint.setup {
+  root_dir = require("lspconfig.util").root_pattern("package.json", ".git"),
+  -- on_attach = function(client, bufnr)
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     buffer = bufnr,
+  --     command = "EslintFixAll",
+  --   })
+  --   client.server_capabilities.documentFormattingProvider = true
+  --   client.server_capabilities.documentRangeFormattingProvider = true
+  -- end,
+  on_attach = function(client, bufnr)
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+    end
+
+    -- 配置快捷键进行格式化
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true })
+  end,
+}
+
+require('lspconfig').ts_ls.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.cmd("FormatSync")
+      end,
+    })
+  end,
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+        languages = {"javascript", "typescript", "vue"},
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
+})
