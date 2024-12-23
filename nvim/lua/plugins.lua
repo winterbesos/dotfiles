@@ -109,4 +109,10 @@ use {
 
   use "Shatur/neovim-tasks"
   use "lukas-reineke/indent-blankline.nvim"
+  use {
+    'leoluz/nvim-dap-go',
+    config = function()
+      require('dap-go').setup()
+    end
+  }
 end)

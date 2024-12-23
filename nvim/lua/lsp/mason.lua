@@ -134,6 +134,7 @@ require("lspconfig").clangd.setup {
     },
   },
 }
+
 require('lspconfig').eslint.setup {
   root_dir = require("lspconfig.util").root_pattern("package.json", ".git"),
   -- on_attach = function(client, bufnr)
@@ -178,3 +179,17 @@ require('lspconfig').ts_ls.setup({
     "vue",
   },
 })
+
+require('lspconfig').gopls.setup{
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod" },
+    root_dir = require'lspconfig'.util.root_pattern("go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      }
+    }
+  }

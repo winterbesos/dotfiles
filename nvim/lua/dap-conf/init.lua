@@ -194,5 +194,7 @@ dap.configurations.javascript = {
   },
 }
 
+require('dap-go').setup({
+})
 
 require("dapui").setup()
