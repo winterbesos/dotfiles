@@ -84,7 +84,7 @@ use {
 
   -- snippets
   use { 'michaelb/sniprun', run = 'sh ./install.sh'}
-  use "L3MON4D3/LuaSnip" --snippet engine
+  use { "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp" } --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
