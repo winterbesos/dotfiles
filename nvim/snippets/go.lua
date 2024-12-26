@@ -17,13 +17,23 @@ local l = extras.l
 local postfix = require "luasnip.extras.postfix".postfix
 
 ls.add_snippets("all", {
-    s("reqsn", {
-        -- type UploadUserFaceEmotionReq struct {
-        -- 	TimeStamp   int64      `json:"timestamp"`
-        -- 	SN          string     `json:"sn"`
-        --   $1
-        -- }
-        t("type "), i(1, "name"), t("Req struct {")
-        -- i(1, "cond"), t(" ? "), i(2, "then"), t(" : "), i(3, "else")
-    })
+  s("reqsn", {
+    t("type "), 
+    i(1, "name"), 
+    t("Req struct {"),
+    t({"", "  TimeStamp   int64      `json:\"timestamp\"`"}),
+    t({"", "  SN          string     `json:\"sn\"`"}),
+    t({"", "  "}),
+    i(2, {"content"}),
+    t({"", "}"})
+  }),
+  s("reqlt", {
+    t("type "), 
+    i(1, "name"), 
+    t({"Req struct {", "  TimeStamp  int64  `json:\"timestamp\"`", "  LoginToken string `json:\"login_token\"`", ""}),
+    t({"", "  "}),
+    i(2, "content"),
+    t("}")
+  }),
 })
+
