@@ -178,9 +178,9 @@ keymap("n", "<leader>U", ":lua require('user.utils').GtagsRefernce()<cr>", opts)
 -- find definition
 keymap("n", "<leader>T", ":lua require('user.utils').GtagsText()<cr>", opts)
 
-keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
+-- keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
+--   expr = true,
+--   replace_keycodes = false
+-- })
 vim.g.copilot_no_tab_map = true
 

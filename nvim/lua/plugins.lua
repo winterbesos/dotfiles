@@ -20,20 +20,21 @@ return require('packer').startup(function(use)
   use "MattesGroeger/vim-bookmarks"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   -- use "nvim-telescope/telescope-dap.nvim"
-  use "mfussenegger/nvim-dap"
+  use { "mfussenegger/nvim-dap", tag = "0.9.0" }
   use "nvim-neotest/nvim-nio"
   use {
     'rcarriga/nvim-dap-ui',
     requires = {{'mfussenegger/nvim-dap'}, {'nvim-neotest/nvim-nio'}}
   }
 
-use "mxsdev/nvim-dap-vscode-js"
-use "theHamsta/nvim-dap-virtual-text"
-use {
-  "microsoft/vscode-js-debug",
-  opt = true,
-  run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
-}
+  use 'leoluz/nvim-dap-go'
+  use "mxsdev/nvim-dap-vscode-js"
+  use "theHamsta/nvim-dap-virtual-text"
+  use {
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+  }
 
   -- Treesittetr
   use {
@@ -109,10 +110,4 @@ use {
 
   use "Shatur/neovim-tasks"
   use "lukas-reineke/indent-blankline.nvim"
-  use {
-    'leoluz/nvim-dap-go',
-    config = function()
-      require('dap-go').setup()
-    end
-  }
 end)

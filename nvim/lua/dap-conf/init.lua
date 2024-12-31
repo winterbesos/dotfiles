@@ -4,6 +4,7 @@
 -- end
 
 local dap = require('dap')
+dap.set_log_level('TRACE')
 
 require("nvim-dap-virtual-text").setup {
     enabled = true,                        -- enable this plugin (the default)

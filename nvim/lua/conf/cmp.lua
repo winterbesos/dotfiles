@@ -238,16 +238,16 @@ cmp_config = {
     { name = "crates" },
   },
   mapping = cmp.mapping.preset.insert {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     -- TODO: potentially fix emmet nonsense
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
+      if luasnip.expandable() then
         luasnip.expand()
+      elseif cmp.visible() and cmp.confirm(cmp_config.confirm_opts) then
+        -- cmp.mapping.complete()
       elseif jumpable(1) then
         luasnip.jump(1)
       elseif check_backspace() then
@@ -274,7 +274,7 @@ cmp_config = {
       "s",
     }),
 
-    ["<C-p>"] = cmp.mapping.complete(),
+    ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping(function(fallback)
       if cmp.visible() and cmp.confirm(cmp_config.confirm_opts) then
