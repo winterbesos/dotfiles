@@ -18,10 +18,16 @@ vim.g.maplocalleader = ";"
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
+
+keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", opts)
+keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", opts)
+keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", opts)
+keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", opts)
+
 -- NOTE: require winshit plugin
 keymap("n", "<C-W>m", ":WinShift<cr>", opts)
 
@@ -178,9 +184,10 @@ keymap("n", "<leader>U", ":lua require('user.utils').GtagsRefernce()<cr>", opts)
 -- find definition
 keymap("n", "<leader>T", ":lua require('user.utils').GtagsText()<cr>", opts)
 
--- keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
---   expr = true,
---   replace_keycodes = false
--- })
-vim.g.copilot_no_tab_map = true
+keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = false
+vim.g.copilot_no_browser = true
 

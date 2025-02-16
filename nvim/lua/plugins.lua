@@ -104,10 +104,14 @@ return require('packer').startup(function(use)
 --   use "winterbesos/vim-blue"
   use "preservim/tagbar"
 
-  -- use "github/copilot.vim"
+  use "github/copilot.vim"
   use "vim-test/vim-test"
   use "numToStr/Comment.nvim"
 
   use "Shatur/neovim-tasks"
   use "lukas-reineke/indent-blankline.nvim"
+  use { 
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  }
 end)
