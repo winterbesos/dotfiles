@@ -114,4 +114,5 @@ return require('packer').startup(function(use)
     "christoomey/vim-tmux-navigator",
     lazy = false,
   }
+  use "powerman/vim-plugin-AnsiEsc"
 end)

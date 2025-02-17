@@ -196,6 +196,14 @@ dap.configurations.javascript = {
 }
 
 require('dap-go').setup({
+  dap_configurations = {
+    {
+      type = "go",
+      name = "Debug (Build Workspace main.go)",
+      request = "launch",
+      program = "${workspaceFolder}/main.go",
+    },
+  },
 })
 
 require("dapui").setup()

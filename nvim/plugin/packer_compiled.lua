@@ -345,6 +345,11 @@ _G.packer_plugins = {
     path = "/home/salo/.local/share/nvim/site/pack/packer/start/vim-bookmarks",
     url = "https://github.com/MattesGroeger/vim-bookmarks"
   },
+  ["vim-plugin-AnsiEsc"] = {
+    loaded = true,
+    path = "/home/salo/.local/share/nvim/site/pack/packer/start/vim-plugin-AnsiEsc",
+    url = "https://github.com/powerman/vim-plugin-AnsiEsc"
+  },
   ["vim-rails"] = {
     loaded = true,
     path = "/home/salo/.local/share/nvim/site/pack/packer/start/vim-rails",
