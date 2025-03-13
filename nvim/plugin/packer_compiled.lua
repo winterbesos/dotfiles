@@ -145,6 +145,11 @@ _G.packer_plugins = {
     path = "/home/salo/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["flash.nvim"] = {
+    loaded = true,
+    path = "/home/salo/.local/share/nvim/site/pack/packer/start/flash.nvim",
+    url = "https://github.com/folke/flash.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/salo/.local/share/nvim/site/pack/packer/start/friendly-snippets",

@@ -115,4 +115,5 @@ return require('packer').startup(function(use)
     lazy = false,
   }
   use "powerman/vim-plugin-AnsiEsc"
+  use "folke/flash.nvim"
 end)

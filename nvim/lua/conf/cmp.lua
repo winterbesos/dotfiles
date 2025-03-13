@@ -276,7 +276,7 @@ cmp_config = {
       "s",
     }),
 
-    ["<C-Space>"] = cmp.mapping.complete(),
+    -- ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping(function(fallback)
       if cmp.visible() and cmp.confirm(cmp_config.confirm_opts) then
