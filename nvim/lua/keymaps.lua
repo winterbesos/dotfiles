@@ -188,6 +188,5 @@ keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
 })
-vim.g.copilot_no_tab_map = false
 vim.g.copilot_no_browser = true
 

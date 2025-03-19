@@ -41,6 +41,7 @@ return require('packer').startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+  use { 'nvim-treesitter/playground' }
   use "nvim-treesitter/nvim-treesitter-textobjects"  -- enhance texetobject selection
   use "romgrk/nvim-treesitter-context" -- show class/function at the top
 
@@ -107,6 +108,22 @@ return require('packer').startup(function(use)
   use "github/copilot.vim"
   use "vim-test/vim-test"
   use "numToStr/Comment.nvim"
+  use {
+    "danymat/neogen",
+    config = function()
+        require('neogen').setup {
+          enabled = true,
+          languages = {
+              go = {
+                  template = {
+                      annotation_convention = "godoc",
+                  },
+              },
+          },
+        }
+    end,
+    tag = "2.20.0"
+  }
 
   use "Shatur/neovim-tasks"
   use "lukas-reineke/indent-blankline.nvim"
@@ -116,4 +133,16 @@ return require('packer').startup(function(use)
   }
   use "powerman/vim-plugin-AnsiEsc"
   use "folke/flash.nvim"
+  use "chrisbra/Colorizer"
+  use "folke/flash.nvim"
+  use "digitaltoad/vim-pug"
+  use "MunifTanjim/nui.nvim"
+  use 'MeanderingProgrammer/render-markdown.nvim'
+  use 'stevearc/dressing.nvim'
+  use 'HakonHarnes/img-clip.nvim'
+  use {
+    'yetone/avante.nvim',
+    branch = 'main',
+    run = 'make',
+  }
 end)

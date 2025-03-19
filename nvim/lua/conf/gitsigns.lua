@@ -69,3 +69,5 @@ gitsigns.setup {
     map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end
 }
+
+vim.cmd("highlight GitSignsCurrentLineBlame guifg=#888888 gui=italic")

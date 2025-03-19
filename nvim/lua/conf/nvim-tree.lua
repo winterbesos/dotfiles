@@ -95,6 +95,7 @@ nvim_tree.setup({
     icons = {
       webdev_colors = true,
     },
+    highlight_opened_files = "none",
   },
   hijack_directories = {
     enable = true,

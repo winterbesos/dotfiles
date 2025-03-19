@@ -80,6 +80,8 @@ telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
 
+    file_ignore_patterns = { "node_modules", "dist", ".git", "build", "venv", "__pycache__" },
+
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = {

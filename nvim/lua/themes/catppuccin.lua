@@ -35,7 +35,8 @@ catppuccin.setup({
   },
   color_overrides = {},
   custom_highlights = {
-    CursorColumn = { bg = "#333333" }
+    CursorColumn = { bg = "#333333" },
+    CursorLine = { bg = "#333333" }
   },
   integrations = {
       cmp = true,
