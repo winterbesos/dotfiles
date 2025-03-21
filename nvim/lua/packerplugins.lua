@@ -1,0 +1,70 @@
+--   -- Telescope
+--   use "nvim-telescope/telescope-rg.nvim"
+--   -- use "nvim-telescope/telescope-dap.nvim"
+--   use {
+--     'rcarriga/nvim-dap-ui',
+--     requires = {{'mfussenegger/nvim-dap'}, {'nvim-neotest/nvim-nio'}}
+--   }
+-- 
+--   use {
+--     "microsoft/vscode-js-debug",
+--     opt = true,
+--     run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+--   }
+-- 
+--   use { 'nvim-treesitter/playground' }
+--   use "nvim-treesitter/nvim-treesitter-textobjects"  -- enhance texetobject selection
+--   use "romgrk/nvim-treesitter-context" -- show class/function at the top
+--   use 'echasnovski/mini.nvim'
+-- 
+--   -- LSP
+--   use "williamboman/mason-lspconfig.nvim" -- enable LSP
+--   use "neovim/nvim-lspconfig"
+--   use "williamboman/mason.nvim"
+--   use "ray-x/lsp_signature.nvim" -- show function signature when typing
+-- 
+--   -- cmp plugins
+--   use "hrsh7th/nvim-cmp" -- The completion plugin
+--   use "hrsh7th/cmp-buffer" -- buffer completions
+--   use "hrsh7th/cmp-nvim-lsp"
+--   use "hrsh7th/cmp-nvim-lua"
+-- 
+--   -- snippets
+--   use { 'michaelb/sniprun', run = 'sh ./install.sh'}
+--   use { "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp" } --snippet engine
+
+--   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+--   use "saadparwaiz1/cmp_luasnip" -- snippet completions
+--   -- use "jsfaint/gen_tags.vim"
+--   use "ray-x/cmp-treesitter"
+--   use "f3fora/cmp-spell" -- spell check
+--   use "ethanholz/nvim-lastplace" -- auto return back to the last modified positon when open a file
+--   use "nvim-pack/nvim-spectre" -- search and replace pane
+--   use "tpope/vim-repeat" --  . command enhance
+--   use "tpope/vim-surround" -- vim surround
+-- 
+--   -- Language
+--   use "mattn/webapi-vim"
+--   use "vim-test/vim-test"
+--   use {
+--     "danymat/neogen",
+--     config = function()
+--         require('neogen').setup {
+--           enabled = true,
+--           languages = {
+--               go = {
+--                   template = {
+--                       annotation_convention = "godoc",
+--                   },
+--               },
+--           },
+--         }
+--     end,
+--     tag = "2.20.0"
+--   }
+-- 
+--   use "Shatur/neovim-tasks"
+--   use "lukas-reineke/indent-blankline.nvim"
+--   use "powerman/vim-plugin-AnsiEsc"
+--   use "chrisbra/Colorizer"
+--   use "digitaltoad/vim-pug"
