@@ -102,7 +102,7 @@ local mappings = {
   { "<Space>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc = "Toggle Repl", nowait = true, remap = false },
   { "<Space>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint", nowait = true, remap = false },
   { "<Space>du", "<cmd>lua require'dap'.step_out()<cr>", desc = "Step Out", nowait = true, remap = false },
-  { "<Space>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer", nowait = true, remap = false },
+  { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
   { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
   { "<Space>g", group = "Git", nowait = true, remap = false },
   { "<Space>gN", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },

@@ -1,7 +1,6 @@
 require "keymaps"
 require "config.lazy"
 require "options"
--- require "packerplugins"
 require "colorscheme"
 require "utils"
 require "conf"
