@@ -6,3 +6,6 @@ clash/cache.db
 debugger/
 
 lazygit/state.yml
+
+**/.DS_Store
+
