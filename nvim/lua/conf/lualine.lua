@@ -98,7 +98,6 @@ local fileformat = {
 local progress = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
-  -- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
   local chars = { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", "  ", }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
@@ -133,7 +132,7 @@ lualine.setup({
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { branch, diagnostics },
+    lualine_a = { diagnostics },
     lualine_b = { mode },
     lualine_c = { file_name },
     lualine_x = { diff, spaces, encoding, filetype, fileformat },

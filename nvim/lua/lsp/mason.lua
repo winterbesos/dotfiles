@@ -99,7 +99,10 @@ require("lspconfig").solargraph.setup {
       diagnostics = true,
       completion = true
     }
-  }
+  },
+  on_attach = function(client, bufnr)
+    require "lsp_signature".on_attach(signature_setup, bufnr)
+  end,
 }
 require("lspconfig").pyright.setup {
   root_dir = require("lspconfig").util.root_pattern('.git', 'pyrightconfig.json', 'setup.py', 'setup.cfg', 'pyproject.toml', 'scrapy.cfg'),
@@ -114,7 +117,10 @@ require("lspconfig").pyright.setup {
         typeCheckingMode = "basic",
       },
     },
-  }
+  },
+  on_attach = function(client, bufnr)
+    require "lsp_signature".on_attach(signature_setup, bufnr)
+  end,
 }
 require("lspconfig").clangd.setup {
   cmd = { "clangd", "--compile-commands-dir=build", "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename", "--clang-tidy", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename" },
@@ -181,15 +187,18 @@ require('lspconfig').ts_ls.setup({
 })
 
 require('lspconfig').gopls.setup{
-    cmd = { "gopls" },
-    filetypes = { "go", "gomod" },
-    root_dir = require'lspconfig'.util.root_pattern("go.mod", ".git"),
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-      }
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod" },
+  root_dir = require'lspconfig'.util.root_pattern("go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
     }
-  }
+  },
+  on_attach = function(client, bufnr)
+    require "lsp_signature".on_attach(signature_setup, bufnr)
+  end,
+}

@@ -1,10 +1,5 @@
 --   -- Telescope
 --   use "nvim-telescope/telescope-rg.nvim"
---   -- use "nvim-telescope/telescope-dap.nvim"
---   use {
---     'rcarriga/nvim-dap-ui',
---     requires = {{'mfussenegger/nvim-dap'}, {'nvim-neotest/nvim-nio'}}
---   }
 -- 
 --   use {
 --     "microsoft/vscode-js-debug",
@@ -15,12 +10,8 @@
 --   use { 'nvim-treesitter/playground' }
 --   use "nvim-treesitter/nvim-treesitter-textobjects"  -- enhance texetobject selection
 --   use "romgrk/nvim-treesitter-context" -- show class/function at the top
---   use 'echasnovski/mini.nvim'
 -- 
 --   -- LSP
---   use "williamboman/mason-lspconfig.nvim" -- enable LSP
---   use "neovim/nvim-lspconfig"
---   use "williamboman/mason.nvim"
 --   use "ray-x/lsp_signature.nvim" -- show function signature when typing
 -- 
 --   -- cmp plugins
@@ -31,7 +22,6 @@
 -- 
 --   -- snippets
 --   use { 'michaelb/sniprun', run = 'sh ./install.sh'}
---   use { "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp" } --snippet engine
 
 --   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 --   use "saadparwaiz1/cmp_luasnip" -- snippet completions

@@ -198,11 +198,6 @@ telescope.setup {
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      }
-    },
     live_grep_args = {
       auto_quoting = false, -- enable/disable auto-quoting
     }
@@ -211,9 +206,9 @@ telescope.setup {
 
 -- telescope.load_extension("frecency")
 telescope.load_extension('fzf')
-telescope.load_extension("ui-select")
--- telescope.load_extension('dap')
+telescope.load_extension('dap')
 telescope.load_extension('vim_bookmarks')
 telescope.load_extension("live_grep_args")
 telescope.load_extension("project")
+telescope.load_extension('neoclip')
 -- load project extension. see project.lua file

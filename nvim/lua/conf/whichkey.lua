@@ -59,11 +59,16 @@ local mappings = {
   { "<Space>C", "<cmd>%bd|e#<CR>", desc = "Close Other Buffers", nowait = true, remap = false },
   { "<Space>F", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args(require('telescope.themes').get_ivy())<cr>", desc = "Find Text", nowait = true, remap = false },
   { "<Space>P", "<cmd>SessionManager load_session<cr>", desc = "Projects", nowait = true, remap = false },
+  { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
+  { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
+
+
   { "<Space>R", group = "Replace", nowait = true, remap = false },
   { "<Space>Rf", "<cmd>lua require('spectre').open_file_search()<CR>", desc = "Replace File", nowait = true, remap = false },
   { "<Space>Rp", "<cmd>lua require('spectre').open()<CR>", desc = "Replace Project", nowait = true, remap = false },
   { "<Space>Rs", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", desc = "Search", nowait = true, remap = false },
   { "<Space>S", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", desc = "Find Symobls", nowait = true, remap = false },
+
   { "<Space>T", group = "Trouble", nowait = true, remap = false },
   { "<Space>Td", "<cmd>Trouble document_diagnostics<cr>", desc = "Document Diagnostics", nowait = true, remap = false },
   { "<Space>Tg", "<cmd>Gitsigns setloclist<cr>", desc = "Open changed hunk", nowait = true, remap = false },
@@ -72,6 +77,7 @@ local mappings = {
   { "<Space>Tu", "<cmd>Trouble lsp_references<cr>", desc = "Usage", nowait = true, remap = false },
   { "<Space>Tw", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
   { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
+
   { "<Space>c", group = "CMake", nowait = true, remap = false },
   { "<Space>cT", "<cmd>CMake select_build_type<CR>", desc = "SelectBuildType", nowait = true, remap = false },
   { "<Space>ca", "<cmd>CMake build_all<CR>", desc = "BuildAll", nowait = true, remap = false },
@@ -82,6 +88,7 @@ local mappings = {
   { "<Space>cr", "<cmd>CMake build_and_run<CR>", desc = "Run", nowait = true, remap = false },
   { "<Space>cs", "<cmd>CMake set_target_args<CR>", desc = "SetArg", nowait = true, remap = false },
   { "<Space>ct", "<cmd>CMake select_target<CR>", desc = "SelectTarget", nowait = true, remap = false },
+
   { "<Space>d", group = "Debug", nowait = true, remap = false },
   { "<Space>dC", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", desc = "Conditional Breakpoint", nowait = true, remap = false },
   { "<Space>dE", "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", desc = "Evaluate Input", nowait = true, remap = false },
@@ -102,8 +109,8 @@ local mappings = {
   { "<Space>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc = "Toggle Repl", nowait = true, remap = false },
   { "<Space>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint", nowait = true, remap = false },
   { "<Space>du", "<cmd>lua require'dap'.step_out()<cr>", desc = "Step Out", nowait = true, remap = false },
-  { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
-  { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
+  { "<Space>dl", "<cmd>Telescope dap list_breakpoints<cr>", desc = "List Breakpoints", nowait = true, remap = false },
+
   { "<Space>g", group = "Git", nowait = true, remap = false },
   { "<Space>gN", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
   { "<Space>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer", nowait = true, remap = false },
@@ -120,6 +127,7 @@ local mappings = {
   { "<Space>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
   { "<Space>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
   { "<Space>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
+
   { "<Space>h", group = "Help", nowait = true, remap = false },
   { "<Space>hC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
   { "<Space>hM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
@@ -127,6 +135,7 @@ local mappings = {
   { "<Space>hc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", nowait = true, remap = false },
   { "<Space>hh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", nowait = true, remap = false },
   { "<Space>hk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
+
   { "<Space>l", group = "LSP", nowait = true, remap = false },
   { "<Space>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
   { "<Space>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols", nowait = true, remap = false },
@@ -142,9 +151,10 @@ local mappings = {
   { "<Space>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols", nowait = true, remap = false },
   { "<Space>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
   { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
-  { "<Space>p", "<cmd>Telescope projects<cr>", desc = "Projects", nowait = true, remap = false },
+  { "<Space>p", "<cmd>Telescope project<cr>", desc = "Projects", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
   { "<Space>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },
+
   { "<Space>t", group = "Test", nowait = true, remap = false },
   { "<Space>tf", "<cmd>TestFile<cr>", desc = "Test File", nowait = true, remap = false },
   { "<Space>tl", "<cmd>TestLast<cr>", desc = "Test Last", nowait = true, remap = false },
