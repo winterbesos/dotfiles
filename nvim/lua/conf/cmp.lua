@@ -136,10 +136,12 @@ end
 
 
 require("luasnip.loaders.from_vscode").lazy_load() -- load freindly-snippets
-require("luasnip.loaders.from_vscode").load({ paths = { -- load custom snippets
-  vim.fn.stdpath("config") .. "/my-snippets"
-} }) -- Load snippets from my-snippets folder
-
+require("luasnip.loaders.from_vscode").load({ 
+  paths = {
+    vim.fn.stdpath("config") .. "snippets"
+  } 
+})
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
 cmp_config = {
   confirm_opts = {
