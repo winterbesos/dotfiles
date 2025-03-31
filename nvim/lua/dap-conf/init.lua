@@ -124,6 +124,12 @@ dap.adapters.python = {
   args = { '-m', 'debugpy.adapter' },
 }
 
+dap.adapters.python_remote_debugpy = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 5678
+}
+
 dap.configurations.python = {
   {
     -- The first three options are required by nvim-dap
@@ -138,6 +144,22 @@ dap.configurations.python = {
       return 'python'
     end;
     justMyCode = true;
+  },
+  {
+    type = 'python_remote_debugpy',
+    request = 'attach',
+    name = "Attach to running process",
+    connect = {
+      host = "127.0.0.1",
+      port = 5678
+    },
+    mode = "remote",
+    pathMappings = {
+      {
+        localRoot = vim.fn.getcwd(), -- 当前工作目录
+        remoteRoot = ".",            -- 远程服务中的根路径
+      }
+    },
   },
   {
     -- The first three options are required by nvim-dap
@@ -160,7 +182,7 @@ dap.configurations.python = {
     program = "${file}";
     args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", "/Users/salo/Downloads/image.jpg", "--type", "ocr", "--device", "cpu"};
     justMyCode = false;
-  },
+  }
 }
 
 require("dap-vscode-js").setup({

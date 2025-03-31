@@ -61,7 +61,10 @@ local mappings = {
   { "<Space>P", "<cmd>SessionManager load_session<cr>", desc = "Projects", nowait = true, remap = false },
   { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
   { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
-
+  { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
+  { "<Space>p", "<cmd>Telescope projects<cr>", desc = "Projects", nowait = true, remap = false },
+  { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+  { "<Space>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },
 
   { "<Space>R", group = "Replace", nowait = true, remap = false },
   { "<Space>Rf", "<cmd>lua require('spectre').open_file_search()<CR>", desc = "Replace File", nowait = true, remap = false },
@@ -147,13 +150,9 @@ local mappings = {
   { "<Space>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Prev Diagnostic", nowait = true, remap = false },
   { "<Space>ll", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
   { "<Space>lq", "<cmd>lua vim.diagnostic.setqflist()<cr>", desc = "Quickfix", nowait = true, remap = false },
-  { "<Space>lr", "<cmd>lua vim.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
+  { "<Space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
   { "<Space>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols", nowait = true, remap = false },
   { "<Space>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
-  { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
-  { "<Space>p", "<cmd>Telescope project<cr>", desc = "Projects", nowait = true, remap = false },
-  { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
-  { "<Space>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },
 
   { "<Space>t", group = "Test", nowait = true, remap = false },
   { "<Space>tf", "<cmd>TestFile<cr>", desc = "Test File", nowait = true, remap = false },
