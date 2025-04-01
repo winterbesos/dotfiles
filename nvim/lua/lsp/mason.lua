@@ -94,10 +94,15 @@ mason.setup({
 
 require("lspconfig").solargraph.setup {
   settings = {
+    cmd = { "solargraph", "stdio" },
+  },
+  filetypes = { "ruby" },
+  init_options = {
+    formatting = true
+  },
+  settings = {
     solargraph = {
-      commandPath = '/Users/salo/.gem/ruby/3.0.0/bin/solargraph',
-      diagnostics = true,
-      completion = true
+      diagnostics = true
     }
   },
   on_attach = function(client, bufnr)
