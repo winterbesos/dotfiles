@@ -1,4 +1,4 @@
 return {
   "hrsh7th/cmp-buffer",
-  commit = "51f42e6ef64e6ec6601f640731a94c524f165d7c",
+  commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa",
 }
