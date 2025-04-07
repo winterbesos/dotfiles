@@ -2,26 +2,33 @@ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
+  local signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+
+    { name = "DapBreakpoint", text = "" },
+    { name = "DapBreakpointCondition", text = "" },
+    { name = "DapLogPoint", text = "" },
+    { name = "DapBreakpointRejected", text = "" },
+    { name = "DapStopped", text = "󰁔" },
+  }
+
   vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg=0, fg='#993939', bg='#31353f' })
   vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg=0, fg='#61afef', bg='#31353f' })
   vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg=0, fg='#98c379', bg='#31353f' })
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
 
-  vim.diagnostic.config({
-    signs = {
-      text = {
-        ["DiagnosticSignError"] = "",
-        ["DiagnosticSignWarn"] = "",
-        ["DiagnosticSignHint"] = "",
-        ["DiagnosticSignInfo"] = "",
-        ["DapBreakpoint"] = "",
-        ["DapBreakpointCondition"] = "",
-        ["DapLogPoint"] = "",
-        ["DapBreakpointRejected"] = "",
-        ["DapStopped"] = "󰁔",
-      },
-    },
+  local config = {
     -- disable virtual text
     virtual_text = false,
+    -- show signs
+    signs = {
+      active = signs,
+    },
     update_in_insert = true,
     underline = true,
     severity_sort = true,
@@ -33,7 +40,9 @@ M.setup = function()
       header = "",
       prefix = "",
     },
-  })
+  }
+
+  vim.diagnostic.config(config)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
