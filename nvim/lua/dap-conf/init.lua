@@ -201,9 +201,15 @@ require('dap-go').setup({
       type = "go",
       name = "Debug (Build Workspace main.go)",
       request = "launch",
-      program = "${workspaceFolder}/main.go",
+      program = "main.go",
+      outputMode = "remote",
     },
   },
+  delve = {
+    path = "dlv",
+    initialize_timeout_sec = 20,
+    cwd = 'src',
+  }
 })
 
 require("dapui").setup()
