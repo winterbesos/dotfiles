@@ -62,15 +62,20 @@ local mappings = {
   { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
   { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
   { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
-  { "<Space>p", "<cmd>Telescope projects<cr>", desc = "Projects", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
-  { "<Space>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },
+  { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
+
+  { "<Space>s", group = "Telescope", nowait = true, remap = false },
+  { "<Space>ss", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },
+  { "<Space>sS", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", desc = "Find Symobls", nowait = true, remap = false },
+  { "<Space>sv", "<cmd>lua require('telescope').extensions.neoclip.default(require('telescope.themes').get_ivy())<cr>", desc = "Clipboard Manager", nowait = true, remap = false },
+  { "<Space>sp", "<cmd>Telescope projects<cr>", desc = "Projects", nowait = true, remap = false },
+  { "<Space>st", "<cmd>TodoTelescope<cr>", desc = "TODO", nowait = true, remap = false },
 
   { "<Space>R", group = "Replace", nowait = true, remap = false },
   { "<Space>Rf", "<cmd>lua require('spectre').open_file_search()<CR>", desc = "Replace File", nowait = true, remap = false },
   { "<Space>Rp", "<cmd>lua require('spectre').open()<CR>", desc = "Replace Project", nowait = true, remap = false },
   { "<Space>Rs", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", desc = "Search", nowait = true, remap = false },
-  { "<Space>S", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", desc = "Find Symobls", nowait = true, remap = false },
 
   { "<Space>T", group = "Trouble", nowait = true, remap = false },
   { "<Space>Td", "<cmd>Trouble document_diagnostics<cr>", desc = "Document Diagnostics", nowait = true, remap = false },
@@ -79,7 +84,6 @@ local mappings = {
   { "<Space>Tt", "<cmd>Trouble<cr>", desc = "ToggleTrouble", nowait = true, remap = false },
   { "<Space>Tu", "<cmd>Trouble lsp_references<cr>", desc = "Usage", nowait = true, remap = false },
   { "<Space>Tw", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
-  { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
 
   { "<Space>c", group = "CMake", nowait = true, remap = false },
   { "<Space>cT", "<cmd>CMake select_build_type<CR>", desc = "SelectBuildType", nowait = true, remap = false },
@@ -127,6 +131,7 @@ local mappings = {
   { "<Space>gn", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
   { "<Space>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
   { "<Space>gp", "<cmd>DiffviewOpen<CR>", desc = "Diff Project", nowait = true, remap = false },
+  { "<Space>gP", "<cmd>DiffviewClose<CR>", desc = "Diff Project Close", nowait = true, remap = false },
   { "<Space>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
   { "<Space>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
   { "<Space>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
@@ -160,7 +165,6 @@ local mappings = {
   { "<Space>tn", "<cmd>TestNearest<cr>", desc = "Test Nearest", nowait = true, remap = false },
   { "<Space>ts", "<cmd>TestSuite<cr>", desc = "Test Suite", nowait = true, remap = false },
   { "<Space>tv", "<cmd>TestVisit<cr>", desc = "Test Visit", nowait = true, remap = false },
-  { "<Space>v", "<cmd>lua require('telescope').extensions.neoclip.default(require('telescope.themes').get_ivy())<cr>", desc = "Clipboard Manager", nowait = true, remap = false },
 }
 which_key.setup(setup)
 which_key.add(mappings)

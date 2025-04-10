@@ -54,6 +54,8 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
+vim.g.tmux_navigator_disable_when_zoomed = 1
+vim.g.tmux_navigator_preserve_zoom = 1
 
 -- WSL yank support
 vim.cmd [[
