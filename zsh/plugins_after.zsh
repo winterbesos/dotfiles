@@ -7,6 +7,8 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
 source ~/.zsh/plugins/zsh-z.plugin.zsh
 
+source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 if [[ "$(tput colors)" == "256" ]]; then
