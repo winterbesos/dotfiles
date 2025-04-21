@@ -18,7 +18,7 @@ fi
 # External plugins (initialized before)
 source ~/.zsh/plugins_before.zsh
 
-# Settings
+## Settings
 source ~/.zsh/settings.zsh
 
 # Custom prompt
@@ -42,7 +42,7 @@ source ~/.shell/language.sh
 # auto commands
 source ~/.shell/autocommands.sh
 
-# fzy configs
+# fzf configs
 source ~/.shell/fzf-completion.zsh
 source ~/.shell/fzf-key-bindings.zsh
 

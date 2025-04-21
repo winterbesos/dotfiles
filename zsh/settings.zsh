@@ -44,7 +44,7 @@ bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
 
 # Use incremental search
-bindkey "^R" history-incremental-search-backward
+# bindkey "^R" history-incremental-search-backward
 
 #edit command in vi ctrl-x ctrl-e
 autoload edit-command-line

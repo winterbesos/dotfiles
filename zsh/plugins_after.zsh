@@ -7,6 +7,7 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
 source ~/.zsh/plugins/zsh-z.plugin.zsh
 
+zvm_after_init_commands+=('[ -f ~/.shell/fzf-key-bindings.zsh ] && source ~/.shell/fzf-key-bindings.zsh')
 source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
