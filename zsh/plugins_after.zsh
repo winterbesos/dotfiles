@@ -9,6 +9,8 @@ source ~/.zsh/plugins/zsh-z.plugin.zsh
 
 source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 if [[ "$(tput colors)" == "256" ]]; then
