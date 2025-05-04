@@ -56,6 +56,9 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
 vim.g.tmux_navigator_disable_when_zoomed = 1
 vim.g.tmux_navigator_preserve_zoom = 1
+vim.g.neotest_log_level = "debug"
+
+vim.g["test#strategy"] = "neovim"
 
 -- WSL yank support
 vim.cmd [[

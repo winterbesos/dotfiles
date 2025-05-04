@@ -135,6 +135,7 @@ local mappings = {
   { "<Space>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
   { "<Space>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
   { "<Space>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
+  { "<Space>gL", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Lazy git toggle", nowait = true, remap = false },
 
   { "<Space>h", group = "Help", nowait = true, remap = false },
   { "<Space>hC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
