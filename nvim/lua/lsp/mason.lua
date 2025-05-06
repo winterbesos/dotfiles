@@ -244,3 +244,30 @@ config.gopls.setup {
     require "lsp_signature".on_attach(signature_setup, bufnr)
   end,
 }
+
+
+config.dartls.setup {
+  cmd = { "dart", "language-server", "--protocol=lsp" },
+  filetypes = { "dart" },
+  init_options = {
+    closingLabels = true,
+    outline = true,
+    flutterOutline = true,
+  },
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format { async = false }
+      end,
+    })
+
+    -- 自定义按键绑定等
+    local buf_map = function(mode, lhs, rhs)
+      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap=true, silent=true })
+    end
+
+    buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+  end
+}
