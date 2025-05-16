@@ -4,5 +4,7 @@ if not status_ok then
 end
 
 require("lsp.mason")
-mason_lspconfig.setup()
+mason_lspconfig.setup({
+  automatic_enable = false
+})
 require("lsp.handlers").setup()
