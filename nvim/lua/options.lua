@@ -70,3 +70,11 @@ if executable(s:clip)
     augroup END
 endif
 ]]
+
+-- swiftinterface filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.swiftinterface",
+  callback = function()
+    vim.bo.filetype = "swift"
+  end,
+})

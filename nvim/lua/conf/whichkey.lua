@@ -64,6 +64,16 @@ local mappings = {
   { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
   { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
+  { "<Space>b", "<cmd>AvanteToggle<cr>", desc = "Avante Toggle", nowait = true, remap = false },
+
+  { "<Space>w", group = "Workspace", nowait = true, remap = false },
+  { "<Space>ws", "<cmd>lua require('my.scripts').run_shell_scripts()<cr>", desc = "run scripts", nowait = true, remap = false },
+
+  { "<Space>S", group = "System", nowait = true, remap = false },
+  { "<Space>ST", "<cmd>lua _TERMINAL_TOGGLE()<cr>", desc = "terminal", nowait = true, remap = false },
+  { "<Space>St", "<cmd>lua _HTOP_TOGGLE()<cr>", desc = "htop", nowait = true, remap = false },
+  { "<Space>Sp", "<cmd>lua _PYTHON_TOGGLE()<cr>", desc = "python", nowait = true, remap = false },
+  { "<Space>Sn", "<cmd>lua _NODE_TOGGLE()<cr>", desc = "node", nowait = true, remap = false },
 
   { "<Space>s", group = "Telescope", nowait = true, remap = false },
   { "<Space>ss", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", desc = "Find Document Symbols", nowait = true, remap = false },

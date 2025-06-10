@@ -38,6 +38,11 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = true,
+    -- disable = { "python" }, -- 取消 Python 的缩进
+    -- disable = { "c", "rust" }, -- 取消 C 和 Rust 的缩进
+  },
 
   textobjects = {
     select = {

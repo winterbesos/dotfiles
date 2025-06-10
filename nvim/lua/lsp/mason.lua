@@ -272,3 +272,9 @@ config.dartls.setup {
     buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   end
 }
+
+config.sourcekit.setup({
+  cmd = { "xcrun", "sourcekit-lsp" },
+  filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+  root_dir = util.root_pattern("*.xcodeproj", "Package.swift", ".git"),
+})

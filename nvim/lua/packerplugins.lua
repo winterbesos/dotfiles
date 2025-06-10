@@ -14,7 +14,6 @@
 --   use "tpope/vim-repeat" --  . command enhance
 -- 
 --   -- Language
---   use "vim-test/vim-test"
 --   use {
 --     "danymat/neogen",
 --     config = function()
