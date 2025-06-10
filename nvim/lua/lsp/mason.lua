@@ -112,11 +112,12 @@ config.solargraph.setup {
   init_options = {
     formatting = true
   },
+  cmd = { "bundle", "exec", "solargraph", "stdio" },
+  root_dir = util.root_pattern("Gemfile", ".git"),
   settings = {
     solargraph = {
       diagnostics = true
     },
-    cmd = { "solargraph", "stdio" },
   },
   on_attach = function(client, bufnr)
     signature.on_attach(signature_setup, bufnr)
@@ -161,10 +162,10 @@ config.clangd.setup {
 }
 
 config.eslint.setup {
-  root_dir = util.root_pattern("package.json", ".git"),
+	root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js"),
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+		  vim.api.nvim_set_option_value('formatexpr', 'v:lua.vim.lsp.formatexpr()', { buf = bufnr })
     end
 
     -- 配置快捷键进行格式化

@@ -48,6 +48,25 @@ return {
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
-    words = { enabled = true }
+    words = { enabled = true },
+    image = {
+      -- your image configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      resolve = function(file, src)
+				if src:sub(1, 2) == "@/" then
+					-- "@/xxx" 映射为 "<project_root>/src/xxx"
+					local project_root = vim.fn.getcwd()
+					return project_root .. "/src/" .. src:sub(3)
+				elseif not src:match("^/") then
+					-- 相对路径：相对于当前 file 所在目录
+					local file_dir = vim.fn.fnamemodify(file, ":h")
+					return file_dir .. "/" .. src
+				else
+					-- 已是绝对路径，直接返回
+					return src
+				end
+      end,
+    }
   }
 }
