@@ -3,13 +3,27 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    provider = "o96open",
+    provider = "grok",
     providers = {
       o96open = {
         -- endpoint = "https://api.openai.com/v1",
         __inherited_from = "openai",
         endpoint = "https://api.96open.com/v1",
         model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+        extra_request_body = {
+          timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+          temperature = 0.75,
+          -- max_tokens = 4096,
+          max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+        },
+      },
+      grok = {
+        -- endpoint = "https://api.openai.com/v1",
+        __inherited_from = "openai",
+        endpoint = "https://api.x.ai/v1",
+        model = "grok-4",
+        api_key_name = "GROK_API_KEY",
         extra_request_body = {
           timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
           temperature = 0.75,
