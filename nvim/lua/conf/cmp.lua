@@ -244,7 +244,6 @@ cmp_config = {
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    -- TODO: potentially fix emmet nonsense
     ["<Tab>"] = cmp.mapping(function(fallback)
       if not cmp.visible() then
         fallback()
@@ -256,8 +255,8 @@ cmp_config = {
         luasnip.jump(1)
       elseif check_backspace() then
         fallback()
-      elseif is_emmet_active() then
-        return vim.fn["cmp#complete"]()
+      --elseif is_emmet_active() then
+      --  return vim.fn["cmp#complete"]()
       else
         fallback()
       end
@@ -280,22 +279,22 @@ cmp_config = {
 
     -- ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping(function(fallback)
-      if cmp.visible() and cmp.confirm(cmp_config.confirm_opts) then
-        if jumpable(1) then
-          luasnip.jump(1)
-        end
-        return
-      end
+    -- ["<CR>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() and cmp.confirm(cmp_config.confirm_opts) then
+    --     if jumpable(1) then
+    --       luasnip.jump(1)
+    --     end
+    --     return
+    --   end
 
-      if jumpable(1) then
-        if not luasnip.jump(1) then
-          fallback()
-        end
-      else
-        fallback()
-      end
-    end),
+    --   if jumpable(1) then
+    --     if not luasnip.jump(1) then
+    --       fallback()
+    --     end
+    --   else
+    --     fallback()
+    --   end
+    -- end),
   },
 }
 

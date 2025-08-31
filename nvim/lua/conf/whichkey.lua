@@ -68,6 +68,7 @@ local mappings = {
 
   { "<Space>w", group = "Workspace", nowait = true, remap = false },
   { "<Space>ws", "<cmd>lua require('my.scripts').run_shell_scripts()<cr>", desc = "run scripts", nowait = true, remap = false },
+  { "<Space>wi", "<cmd>lua Snacks.image.hover()<cr>", desc = "hover image", nowait = true, remap = false },
 
   { "<Space>S", group = "System", nowait = true, remap = false },
   { "<Space>ST", "<cmd>lua _TERMINAL_TOGGLE()<cr>", desc = "terminal", nowait = true, remap = false },

@@ -174,20 +174,13 @@ config.eslint.setup {
   end,
 }
 
-config.volar.setup {
-  filetypes = { 'typescript', 'javascript', 'vue' }, -- 确保覆盖 Vue 文件
-  root_dir = config.util.root_pattern("package.json", "tsconfig.json", ".git"),
-  init_options = {
-    typescript = {
-      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib"
-    },
-    vue = {
-      hybridMode = false, -- 确保启用 Vue 3 模式
-    }
-  }
+config.emmet_ls.setup{
+  filetypes = { "html", "css", "javascriptreact", "typescriptreact", "vue" }
 }
 
-config.ts_ls.setup {
+config.volar.setup {
+  filetypes = { 'typescript', 'javascript', 'vue' },
+  root_dir = config.util.root_pattern("package.json", "tsconfig.json", ".git"),
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -197,16 +190,19 @@ config.ts_ls.setup {
     })
   end,
   init_options = {
+    typescript = {
+      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib"
+    },
+    vue = {
+      hybridMode = false,
+    },
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-        languages = { "javascript", "typescript" },
+        location = vim.fn.getcwd() .. "/node_modules/@vue/language-server",
+        languages = { "vue" },
       },
     },
-  },
-  filetypes = {
-    "typescript",
   },
 }
 

@@ -50,11 +50,18 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     image = {
+      enabled = true,
+      doc = {
+        inline = false,
+        float = false,
+      },
       -- your image configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       resolve = function(file, src)
-				if src:sub(1, 2) == "@/" then
+        if src:match("^https?://") then
+          return src
+        elseif src:sub(1, 2) == "@/" then
 					-- "@/xxx" 映射为 "<project_root>/src/xxx"
 					local project_root = vim.fn.getcwd()
 					return project_root .. "/src/" .. src:sub(3)
@@ -66,7 +73,36 @@ return {
 					-- 已是绝对路径，直接返回
 					return src
 				end
-      end,
+      end, 
     }
-  }
+  },
+  init = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        -- Setup some globals for debugging (lazy-loaded)
+        _G.dd = function(...)
+          Snacks.debug.inspect(...)
+        end
+        _G.bt = function()
+          Snacks.debug.backtrace()
+        end
+        vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+        -- Create some toggle mappings
+        Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+        Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+        Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+        Snacks.toggle.diagnostics():map("<leader>ud")
+        Snacks.toggle.line_number():map("<leader>ul")
+        Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+        Snacks.toggle.treesitter():map("<leader>uT")
+        Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
+        Snacks.toggle.inlay_hints():map("<leader>uh")
+        Snacks.toggle.indent():map("<leader>ug")
+        Snacks.toggle.dim():map("<leader>uD")
+        Snacks.toggle.option("image", { enabled = false }):map("<leader>uI")
+      end,
+    })
+  end,
 }

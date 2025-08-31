@@ -12,15 +12,15 @@ return {
         run_via_dap = true,
       },
       fvm = true,
-      flutter_lookup_cmd = function()
-      -- 假设你用的是 fvm 安装的 flutter
-      -- fvm 会自动创建 .fvm/flutter_sdk/bin/flutter
-      local flutter_sdk_path = vim.fn.expand("~") .. "/fvm/flutter_sdk/bin/flutter"
-      if vim.fn.executable(flutter_sdk_path) == 1 then
-        return flutter_sdk_path
-      end
-      return nil
-    end,
+      -- flutter_lookup_cmd = function()
+      --   -- 假设你用的是 fvm 安装的 flutter
+      --   -- fvm 会自动创建 .fvm/flutter_sdk/bin/flutter
+      --   local flutter_sdk_path = vim.fn.expand("~") .. "/fvm/flutter_sdk/bin/flutter"
+      --   if vim.fn.executable(flutter_sdk_path) == 1 then
+      --     return flutter_sdk_path
+      --   end
+      --   return nil
+      -- end,
     }
 
     local dap, dapui = require("dap"), require("dapui")
