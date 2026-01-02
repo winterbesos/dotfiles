@@ -59,8 +59,9 @@ local mappings = {
   { "<Space>C", "<cmd>%bd|e#<CR>", desc = "Close Other Buffers", nowait = true, remap = false },
   { "<Space>F", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args(require('telescope.themes').get_ivy())<cr>", desc = "Find Text", nowait = true, remap = false },
   { "<Space>P", "<cmd>SessionManager load_session<cr>", desc = "Projects", nowait = true, remap = false },
-  { "<Space>e", "<cmd>lua Snacks.explorer()<cr>", desc = "File Explorer", nowait = true, remap = false },
+  { "<Space>e", "<cmd>NvimTreeToggle<cr>", desc = "File Explorer", nowait = true, remap = false },
   { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
+  -- { "<Space>F", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", desc = "Find Old files", nowait = true, remap = false },
   { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
   { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
@@ -82,6 +83,7 @@ local mappings = {
   { "<Space>sv", "<cmd>lua require('telescope').extensions.neoclip.default(require('telescope.themes').get_ivy())<cr>", desc = "Clipboard Manager", nowait = true, remap = false },
   { "<Space>sp", "<cmd>Telescope projects<cr>", desc = "Projects", nowait = true, remap = false },
   { "<Space>st", "<cmd>TodoTelescope<cr>", desc = "TODO", nowait = true, remap = false },
+  { "<Space>sm", "<cmd>Telescope harpoon marks<cr>", desc = "Bookmarks", nowait = true, remap = false },
 
   { "<Space>R", group = "Replace", nowait = true, remap = false },
   { "<Space>Rf", "<cmd>lua require('spectre').open_file_search()<CR>", desc = "Replace File", nowait = true, remap = false },
@@ -171,8 +173,12 @@ local mappings = {
   { "<Space>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols", nowait = true, remap = false },
   { "<Space>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
 
+  { "<Space>m", group = "Marks", nowait = true, remap = false },
+  { "<Space>ma", "<cmd>lua require('harpoon'):list():add()<cr>", desc = "Add bookmark", nowait = true, remap = false },
+  { "<Space>ms", "<cmd>Telescope harpoon marks<cr>", desc = "Bookmarks", nowait = true, remap = false },
+
   { "<Space>t", group = "Test", nowait = true, remap = false },
-  { "<Space>tf", "<cmd>TestFile<cr>", desc = "Test File", nowait = true, remap = false },
+  { "<Space>tf", "<cmd>TestFile -strategy=neovim<cr>", desc = "Test File", nowait = true, remap = false },
   { "<Space>tl", "<cmd>TestLast<cr>", desc = "Test Last", nowait = true, remap = false },
   { "<Space>tn", "<cmd>TestNearest<cr>", desc = "Test Nearest", nowait = true, remap = false },
   { "<Space>ts", "<cmd>TestSuite<cr>", desc = "Test Suite", nowait = true, remap = false },

@@ -213,4 +213,5 @@ telescope.load_extension("projects")
 telescope.load_extension('neoclip')
 telescope.load_extension('luasnip')
 telescope.load_extension('flutter')
+telescope.load_extension("harpoon")
 -- load project extension. see project.lua file

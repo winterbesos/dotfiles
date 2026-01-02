@@ -126,6 +126,18 @@ dap.adapters.python = {
 
 dap.configurations.python = {
   {
+    type = 'python',
+    request = 'launch',
+    name = "Launch FastAPI",
+    program = function()
+      return vim.fn.getcwd() .. '/main.py'
+    end,
+    pythonPath = function()
+      return 'python'
+    end,
+    args = {}
+  },
+  {
     -- The first three options are required by nvim-dap
     type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
     request = 'launch';

@@ -91,7 +91,6 @@ mason.setup({
   },
 })
 
-local config = require("lspconfig")
 local util = require("lspconfig.util")
 local signature = require("lsp_signature")
 
@@ -106,63 +105,33 @@ local signature_setup = {
   hi_parameter = "IncSearch"
 }
 
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-config.solargraph.setup {
-  filetypes = { "ruby" },
-  init_options = {
-    formatting = true
-  },
-  cmd = { "bundle", "exec", "solargraph", "stdio" },
-  root_dir = util.root_pattern("Gemfile", ".git"),
+
+vim.lsp.enable('basedpyright')
+
+vim.lsp.config('gopls', {
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod" },
+  root_markers = { ".gomod" },
+  -- root_dir = util.root_pattern("go.mod", ".git"),
   settings = {
-    solargraph = {
-      diagnostics = true
-    },
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    }
   },
   on_attach = function(client, bufnr)
-    signature.on_attach(signature_setup, bufnr)
+    require "lsp_signature".on_attach(signature_setup, bufnr)
   end,
-}
+})
+vim.lsp.enable('gopls')
 
-config.pyright.setup {
-  root_dir = util.root_pattern('.git', 'pyrightconfig.json', 'setup.py', 'setup.cfg', 'pyproject.toml', 'scrapy.cfg'),
-  settings = {
-    python = {
-      pythonPath = "python",
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        extraPaths = { vim.fn.getcwd() .. "/libs" },
-        typeCheckingMode = "basic",
-      },
-    },
-  },
-  on_attach = function(client, bufnr)
-    signature.on_attach(signature_setup, bufnr)
-  end,
-}
 
-config.clangd.setup {
-  cmd = { "clangd", "--compile-commands-dir=build", "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename", "--clang-tidy", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename" },
-  filetypes = { "c", "cpp", "objc", "objcpp" },
-  root_dir = util.root_pattern(".clangd", "compile_flags.txt", ".git"),
-  init_options = {
-    clangdFileStatus = true,
-    usePlaceholders = true,
-    completeUnimported = true,
-    semanticHighlighting = true,
-  },
-  settings = {
-    ccls = {
-      completion = {
-        filterAndSort = false,
-      },
-    },
-  },
-}
-
-config.eslint.setup {
-	root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js"),
+vim.lsp.config('eslint', {
+  root_markers = { ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js" },
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
 		  vim.api.nvim_set_option_value('formatexpr', 'v:lua.vim.lsp.formatexpr()', { buf = bufnr })
@@ -172,16 +141,22 @@ config.eslint.setup {
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>",
       { noremap = true, silent = true })
   end,
-}
+})
+vim.lsp.enable('eslint')
 
-config.emmet_ls.setup{
+vim.lsp.config('emmet_ls', {
   filetypes = { "html", "css", "javascriptreact", "typescriptreact", "vue" }
-}
+})
+vim.lsp.enable('emmet_ls')
 
-config.volar.setup {
+vim.lsp.config('volar', {
   filetypes = { 'typescript', 'javascript', 'vue' },
-  root_dir = config.util.root_pattern("package.json", "tsconfig.json", ".git"),
+  root_markers = { "package.json", "tsconfig.json", ".git" },
   on_attach = function(client, bufnr)
+    if client.name == "volar" then
+      client.server_capabilities.documentFormattingProvider = false
+    end
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
@@ -204,73 +179,97 @@ config.volar.setup {
       },
     },
   },
-}
-
-config.lua_ls.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT", -- Neovim 使用的 Lua 版本
-        path = vim.split(package.path, ";"),
-      },
-      diagnostics = {
-        globals = { "vim" }, -- 告诉 LSP "vim" 是全局变量，不要报错
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true), -- 包括 neovim 的运行时文件
-        checkThirdParty = false,                           -- 避免提示你配置 luarocks 等
-      },
-      telemetry = { enable = false },
-    },
-  }
-}
-
-config.gopls.setup {
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod" },
-  root_dir = util.root_pattern("go.mod", ".git"),
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    }
-  },
-  on_attach = function(client, bufnr)
-    require "lsp_signature".on_attach(signature_setup, bufnr)
-  end,
-}
-
-
-config.dartls.setup {
-  cmd = { "dart", "language-server", "--protocol=lsp" },
-  filetypes = { "dart" },
-  init_options = {
-    closingLabels = true,
-    outline = true,
-    flutterOutline = true,
-  },
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format { async = false }
-      end,
-    })
-
-    -- 自定义按键绑定等
-    local buf_map = function(mode, lhs, rhs)
-      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap=true, silent=true })
-    end
-
-    buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  end
-}
-
-config.sourcekit.setup({
-  cmd = { "xcrun", "sourcekit-lsp" },
-  filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
-  root_dir = util.root_pattern("*.xcodeproj", "Package.swift", ".git"),
 })
+vim.lsp.enable('volar')
+
+
+-- vim.lsp.config('dartls', {
+--   cmd = {"fvm", "dart", "language-server", "--protocol=lsp" },
+--   filetypes = { "dart" },
+--   init_options = {
+--     closingLabels = true,
+--     outline = true,
+--     flutterOutline = true,
+--   },
+--   on_attach = function(client, bufnr)
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       buffer = bufnr,
+--       callback = function()
+--         vim.lsp.buf.format { async = false }
+--       end,
+--     })
+-- 
+--     -- 自定义按键绑定等
+--     local buf_map = function(mode, lhs, rhs)
+--       vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap=true, silent=true })
+--     end
+-- 
+--     buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+--     buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+--   end
+-- })
+-- vim.lsp.enable('dartls')
+
+-- config.solargraph.setup {
+--   filetypes = { "ruby" },
+--   init_options = {
+--     formatting = true
+--   },
+--   cmd = { "bundle", "exec", "solargraph", "stdio" },
+--   root_dir = util.root_pattern("Gemfile", ".git"),
+--   settings = {
+--     solargraph = {
+--       diagnostics = true
+--     },
+--   },
+--   on_attach = function(client, bufnr)
+--     signature.on_attach(signature_setup, bufnr)
+--   end,
+-- }
+-- 
+-- 
+-- config.clangd.setup {
+--   cmd = { "clangd", "--compile-commands-dir=build", "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename", "--clang-tidy", "--header-insertion=iwyu", "--suggest-missing-includes", "--pch-storage=memory", "--cross-file-rename" },
+--   filetypes = { "c", "cpp", "objc", "objcpp" },
+--   root_dir = util.root_pattern(".clangd", "compile_flags.txt", ".git"),
+--   init_options = {
+--     clangdFileStatus = true,
+--     usePlaceholders = true,
+--     completeUnimported = true,
+--     semanticHighlighting = true,
+--   },
+--   settings = {
+--     ccls = {
+--       completion = {
+--         filterAndSort = false,
+--       },
+--     },
+--   },
+-- }
+-- 
+-- config.lua_ls.setup {
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         version = "LuaJIT", -- Neovim 使用的 Lua 版本
+--         path = vim.split(package.path, ";"),
+--       },
+--       diagnostics = {
+--         globals = { "vim" }, -- 告诉 LSP "vim" 是全局变量，不要报错
+--       },
+--       workspace = {
+--         library = vim.api.nvim_get_runtime_file("", true), -- 包括 neovim 的运行时文件
+--         checkThirdParty = false,                           -- 避免提示你配置 luarocks 等
+--       },
+--       telemetry = { enable = false },
+--     },
+--   }
+-- }
+-- 
+-- 
+-- 
+-- config.sourcekit.setup({
+--   cmd = { "xcrun", "sourcekit-lsp" },
+--   filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+--   root_dir = util.root_pattern("*.xcodeproj", "Package.swift", ".git"),
+-- })
