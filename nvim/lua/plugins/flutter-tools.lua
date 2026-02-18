@@ -15,7 +15,7 @@ return {
         enabled = false,
       },
       fvm = true,
-      flutter_path = vim.fn.expand("~") .. "/fvm/default/bin/flutter",
+      -- flutter_path = vim.fn.expand("~") .. "/fvm/default/bin/flutter",
     }
 
     local dap, dapui = require("dap"), require("dapui")

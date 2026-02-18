@@ -207,6 +207,93 @@ dap.configurations.javascript = {
   },
 }
 
+-- 用 FVM 启动 flutter 的 debug_adapter
+dap.adapters.dart = {
+  type = "executable",
+  command = "fvm",
+  args = { "flutter", "debug_adapter" },
+}
+
+
+-- 常用调试配置
+dap.configurations.dart = {
+  {
+    type = "dart",
+    request = "launch",
+    name = "FVM Flutter: Launch (debug)",
+    cwd = "${workspaceFolder}",
+    program = "${workspaceFolder}/lib/main.dart",
+
+    -- 设备选择：先写死，后面我给你一个自动选设备的方法
+    toolArgs = { "-d", "chrome" }, -- 或 emulator-5554 / iPhone / macos 等
+
+    args = {}, -- 传给 main() 的参数
+  },
+  {
+    type = "dart",
+    request = "launch",
+    name = "FVM Flutter: Launch In ASUS (debug)",
+    cwd = "${workspaceFolder}",
+    program = "${workspaceFolder}/lib/main.dart",
+
+    -- 设备选择：先写死，后面我给你一个自动选设备的方法
+    toolArgs = { "-d", "ASUS I003DD" }, -- 或 emulator-5554 / iPhone / macos 等
+    skipFiles = {
+      "**/flutter/**",
+      "**/dart-sdk/**",
+      "**/.pub-cache/**",
+      "**/packages/**",
+    },
+
+
+    args = {}, -- 传给 main() 的参数
+  },
+  {
+    type = "dart",
+    request = "attach",
+    name = "FVM Flutter: Attach",
+    cwd = "${workspaceFolder}",
+  },
+  {
+    type = "dart",
+    request = "launch",
+    name = "Flutter: Launch (debug)",
+    dartSdkPath = nil,          -- 一般不需要填，PATH 能找到即可
+    flutterSdkPath = nil,       -- 同上
+    program = "${workspaceFolder}/lib/main.dart",
+    cwd = "${workspaceFolder}",
+    toolArgs = { "-d", "chrome" }, -- 改成你要跑的设备：chrome / emulator-5554 / iPhone 等
+    args = {},                  -- 传给 main() 的参数
+  },
+  {
+    type = "dart",
+    request = "launch",
+    name = "Flutter: Launch (profile)",
+    program = "${workspaceFolder}/lib/main.dart",
+    cwd = "${workspaceFolder}",
+    flutterMode = "profile",
+    toolArgs = { "-d", "chrome" },
+  },
+  {
+    type = "dart",
+    request = "launch",
+    name = "Flutter: Launch (flavor)",
+    program = "${workspaceFolder}/lib/main.dart",
+    cwd = "${workspaceFolder}",
+    toolArgs = {
+      "--flavor", "dev",
+      "-t", "lib/main_dev.dart",
+      "-d", "chrome",
+    },
+  },
+  {
+    type = "dart",
+    request = "attach",
+    name = "Flutter: Attach",
+    cwd = "${workspaceFolder}",
+  },
+}
+
 require('dap-go').setup({
   dap_configurations = {
     {

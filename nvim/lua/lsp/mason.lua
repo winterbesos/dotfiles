@@ -113,7 +113,7 @@ vim.lsp.enable('basedpyright')
 vim.lsp.config('gopls', {
   cmd = { "gopls" },
   filetypes = { "go", "gomod" },
-  root_markers = { ".gomod" },
+  root_markers = { "go.mod" },
   -- root_dir = util.root_pattern("go.mod", ".git"),
   settings = {
     gopls = {
