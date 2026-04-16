@@ -108,6 +108,17 @@ local signature_setup = {
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 
+vim.lsp.config("basedpyright", {
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = "basic", -- or "strict"
+      },
+    },
+  },
+})
 vim.lsp.enable('basedpyright')
 
 vim.lsp.config('gopls', {
@@ -149,7 +160,7 @@ vim.lsp.config('emmet_ls', {
 })
 vim.lsp.enable('emmet_ls')
 
-vim.lsp.config('volar', {
+vim.lsp.config('vue_ls', {
   filetypes = { 'typescript', 'javascript', 'vue' },
   root_markers = { "package.json", "tsconfig.json", ".git" },
   on_attach = function(client, bufnr)
@@ -180,35 +191,35 @@ vim.lsp.config('volar', {
     },
   },
 })
-vim.lsp.enable('volar')
+vim.lsp.enable('vue_ls')
 
 
--- vim.lsp.config('dartls', {
---   cmd = {"fvm", "dart", "language-server", "--protocol=lsp" },
---   filetypes = { "dart" },
---   init_options = {
---     closingLabels = true,
---     outline = true,
---     flutterOutline = true,
---   },
---   on_attach = function(client, bufnr)
---     vim.api.nvim_create_autocmd("BufWritePre", {
---       buffer = bufnr,
---       callback = function()
---         vim.lsp.buf.format { async = false }
---       end,
---     })
--- 
---     -- 自定义按键绑定等
---     local buf_map = function(mode, lhs, rhs)
---       vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap=true, silent=true })
---     end
--- 
---     buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
---     buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
---   end
--- })
--- vim.lsp.enable('dartls')
+vim.lsp.config('dartls', {
+  cmd = {"fvm", "dart", "language-server", "--protocol=lsp" },
+  filetypes = { "dart" },
+  init_options = {
+    closingLabels = true,
+    outline = true,
+    flutterOutline = true,
+  },
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format { async = false }
+      end,
+    })
+
+    -- 自定义按键绑定等
+    local buf_map = function(mode, lhs, rhs)
+      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap=true, silent=true })
+    end
+
+    buf_map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+  end
+})
+vim.lsp.enable('dartls')
 
 -- config.solargraph.setup {
 --   filetypes = { "ruby" },

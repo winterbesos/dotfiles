@@ -307,7 +307,7 @@ require('dap-go').setup({
   delve = {
     path = "dlv",
     initialize_timeout_sec = 20,
-    cwd = 'src',
+    -- cwd = 'src',
   }
 })
 
