@@ -33,7 +33,8 @@
     ~/.config/nvim: nvim
     ~/.config/clash: clash
     ~/.config/zellij: zellij
-    ~/.config/alacritty: alacritty 
+    ~/.config/alacritty: alacritty
+    ~/.config/kitty: kitty
     ~/.vimrc_local:
     ~/.ideavimrc:
     ~/.vsvimrc:
