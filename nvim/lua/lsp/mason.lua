@@ -221,15 +221,6 @@ vim.lsp.config('dartls', {
 })
 vim.lsp.enable('dartls')
 
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = vim.fn.stdpath("data") .. "/jdtls/" .. project_name
-
-vim.lsp.config('jdtls', {
-  cmd = { "jdtls", "-data", workspace_dir },
-  root_markers = { "pom.xml", ".git" },
-
-})
-vim.lsp.enable('jdtls')
 
 
 -- config.solargraph.setup {

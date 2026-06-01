@@ -10,7 +10,10 @@ return {
       -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
       -- order matters: if one is not detected, the other is used as fallback. You
       -- can also delete or rearangne the detection methods.
-      detection_methods = { "pattern", "lsp", "git" },
+      -- NOTE: "lsp" removed — project.nvim's lsp detection calls the deprecated
+      -- vim.lsp.buf_get_clients() (upstream unmaintained). pattern detection below
+      -- already covers .git/package.json/go.mod/Makefile, so lsp is redundant.
+      detection_methods = { "pattern", "git" },
 
       -- All the patterns used to detect root dir, when **"pattern"** is in
       -- detection_methods

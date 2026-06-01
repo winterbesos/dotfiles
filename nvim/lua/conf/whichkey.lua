@@ -60,7 +60,7 @@ local mappings = {
   { "<Space>F", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args(require('telescope.themes').get_ivy())<cr>", desc = "Find Text", nowait = true, remap = false },
   { "<Space>P", "<cmd>SessionManager load_session<cr>", desc = "Projects", nowait = true, remap = false },
   { "<Space>e", "<cmd>NvimTreeToggle<cr>", desc = "File Explorer", nowait = true, remap = false },
-  { "<Space>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files", nowait = true, remap = false },
+  { "<Space>f", "<cmd>lua require('telescope.builtin').find_files({ path_display = { 'filename_first' } })<cr>", desc = "Find files", nowait = true, remap = false },
   -- { "<Space>F", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", desc = "Find Old files", nowait = true, remap = false },
   { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },

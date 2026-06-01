@@ -140,8 +140,8 @@ keymap("n", "<A-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 keymap("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 keymap("n", "<leader>dq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
-vim.cmd [[ command! FormatSync execute 'lua vim.lsp.buf.format({ async = false })' ]]
+vim.cmd [[ command! Format execute "lua require('conform').format({ async = true, lsp_format = 'fallback' })" ]]
+vim.cmd [[ command! FormatSync execute "lua require('conform').format({ async = false, lsp_format = 'fallback' })" ]]
 
 -- calltree
 keymap("n", "<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
