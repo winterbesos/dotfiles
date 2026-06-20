@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
+
+case "${1:-}" in
+  light)
+    theme="$config_dir/themes/github_light.conf"
+    ;;
+  dark)
+    theme="$config_dir/themes/github_dark.conf"
+    ;;
+  *)
+    echo "usage: switch-theme light|dark" >&2
+    exit 2
+    ;;
+esac
+
+cp "$theme" "$config_dir/themes/current.conf"
+kitten @ --to unix:/tmp/mykitty set-colors --all --configured "$config_dir/themes/current.conf"

@@ -135,7 +135,7 @@ keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "gl", '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>u", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+keymap("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<A-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 keymap("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -190,3 +190,20 @@ keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
 })
 vim.g.copilot_no_browser = true
 
+
+local saved_qflist = nil
+vim.keymap.set("n", "<leader>hq", function()
+  saved_qflist = vim.fn.getqflist({ all = 1 })
+  require("gitsigns").setqflist("all")
+    vim.notify("Quickfix updated with git hunks")
+end, { desc = "Git hunks to quickfix" })
+
+vim.keymap.set("n", "<leader>hQ", function()
+  if saved_qflist then
+    vim.fn.setqflist({}, " ", saved_qflist)
+    saved_qflist = nil
+    vim.notify("Quickfix restored")
+  else
+    vim.notify("No saved quickfix list")
+  end
+end, { desc = "Restore quickfix" })

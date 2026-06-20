@@ -52,7 +52,10 @@ local setup = {
     return true
   end,
   show_help = true, -- show help message on the command line when the popup is visible
-  triggers = { "<Space>", mode = "n" }, -- automatically setup triggers
+  triggers = {
+    { "<Space>", mode = "n" },
+    { "<leader>", mode = "n" },
+  },
 }
 
 local mappings = {
@@ -62,7 +65,7 @@ local mappings = {
   { "<Space>e", "<cmd>NvimTreeToggle<cr>", desc = "File Explorer", nowait = true, remap = false },
   { "<Space>f", "<cmd>lua require('telescope.builtin').find_files({ path_display = { 'filename_first' } })<cr>", desc = "Find files", nowait = true, remap = false },
   -- { "<Space>F", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", desc = "Find Old files", nowait = true, remap = false },
-  { "<Space>o", "<cmd>SymbolsOutline<CR>", desc = "Outline", nowait = true, remap = false },
+  { "<Space>o", "<cmd>AerialToggle!<CR>", desc = "Outline", nowait = true, remap = false },
   { "<Space>r", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
   { "<Space>a", "<cmd>Alpha<cr>", desc = "Welcome", nowait = true, remap = false },
   { "<Space>b", "<cmd>AvanteToggle<cr>", desc = "Avante Toggle", nowait = true, remap = false },
@@ -139,12 +142,13 @@ local mappings = {
   { "<Space>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
   { "<Space>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
   { "<Space>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
-  { "<Space>gf", "<cmd>DiffviewFileHistory<CR>", desc = "File History", nowait = true, remap = false },
+  { "<Space>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "File History", nowait = true, remap = false },
+  { "<Space>gF", "<cmd>DiffviewFileHistory<CR>", desc = "Project History", nowait = true, remap = false },
   { "<Space>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
   { "<Space>gn", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
   { "<Space>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
   { "<Space>gp", "<cmd>DiffviewOpen<CR>", desc = "Diff Project", nowait = true, remap = false },
-  { "<Space>gP", "<cmd>DiffviewClose<CR>", desc = "Diff Project Close", nowait = true, remap = false },
+  { "<Space>gP", "<cmd>DiffviewClose<CR>", desc = "Close Diffview", nowait = true, remap = false },
   { "<Space>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
   { "<Space>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
   { "<Space>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
@@ -157,6 +161,7 @@ local mappings = {
   { "<Space>hc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", nowait = true, remap = false },
   { "<Space>hh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", nowait = true, remap = false },
   { "<Space>hk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
+  { "<Space>hq", "<cmd>Gitsigns setqflist<cr>", desc = "Git changed files", nowait = true, remap = false },
 
   { "<Space>l", group = "LSP", nowait = true, remap = false },
   { "<Space>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
@@ -183,7 +188,84 @@ local mappings = {
   { "<Space>tn", "<cmd>TestNearest<cr>", desc = "Test Nearest", nowait = true, remap = false },
   { "<Space>ts", "<cmd>TestSuite<cr>", desc = "Test Suite", nowait = true, remap = false },
   { "<Space>tv", "<cmd>TestVisit<cr>", desc = "Test Visit", nowait = true, remap = false },
+  { "<Space>td", "<cmd>lua require('dap-go').debug_test()<cr>", desc = "Test Debug", nowait = true, remap = false },
 }
 which_key.setup(setup)
 which_key.add(mappings)
 
+which_key.add({
+  { "<leader>g", group = "Git" },
+  { "<leader>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "File History" },
+  { "<leader>gF", "<cmd>DiffviewFileHistory<CR>", desc = "Project History" },
+  { "<leader>gp", "<cmd>DiffviewOpen<CR>", desc = "Diff Project" },
+  { "<leader>gP", "<cmd>DiffviewClose<CR>", desc = "Close Diffview" },
+
+  { "<leader>c", group = "Code / Conflict" },
+  { "<leader>ca", desc = "Choose All Versions" },
+  { "<leader>cA", desc = "Choose All Versions (File)" },
+  { "<leader>cb", desc = "Choose Base" },
+  { "<leader>cB", desc = "Choose Base (File)" },
+  { "<leader>cl", desc = "LSP Definitions / References" },
+  { "<leader>co", desc = "Choose Ours" },
+  { "<leader>cO", desc = "Choose Ours (File)" },
+  { "<leader>cs", desc = "Symbols" },
+  { "<leader>ct", desc = "Choose Theirs" },
+  { "<leader>cT", desc = "Choose Theirs (File)" },
+
+  { "<leader>d", group = "Debug" },
+  { "<leader>dB", desc = "Conditional Breakpoint" },
+  { "<leader>db", desc = "Toggle Breakpoint" },
+  { "<leader>dj", desc = "Previous Diagnostic" },
+  { "<leader>dk", desc = "Next Diagnostic" },
+  { "<leader>dl", desc = "Run Last" },
+  { "<leader>dq", desc = "Diagnostic Quickfix" },
+
+  { "<leader>e", desc = "File Explorer" },
+  { "<leader>f", desc = "Format" },
+  { "<leader>l", desc = "No Highlight" },
+  { "<leader>q", desc = "Quit Window" },
+  { "<leader>w", desc = "Write" },
+
+  { "<leader>h", group = "Git Hunk" },
+  { "<leader>hb", desc = "Blame Line" },
+  { "<leader>hd", desc = "Diff This" },
+  { "<leader>hD", desc = "Diff This ~" },
+  { "<leader>hp", desc = "Preview Hunk" },
+  { "<leader>hq", desc = "Git Hunks to Quickfix" },
+  { "<leader>hQ", desc = "Restore Quickfix" },
+  { "<leader>hr", desc = "Reset Hunk" },
+  { "<leader>hs", desc = "Stage Hunk" },
+  { "<leader>hR", desc = "Reset Buffer" },
+  { "<leader>hS", desc = "Stage Buffer" },
+  { "<leader>hu", desc = "Undo Stage Hunk" },
+
+  { "<leader>i", group = "Incoming" },
+  { "<leader>in", desc = "Incoming Calls" },
+
+  { "<leader>j", desc = "Next Change" },
+  { "<leader>k", desc = "Previous Change" },
+
+  { "<leader>r", group = "Run" },
+  { "<leader>rf", desc = "Run File Snippet" },
+  { "<leader>rr", desc = "Run Nearest Test" },
+  { "<leader>rs", desc = "Run Selection Snippet", mode = "v" },
+  { "<leader>rn", desc = "Rename" },
+
+  { "<leader>s", desc = "Spell Complete" },
+  { "<leader>T", desc = "Gtags Text" },
+  { "<leader>U", desc = "Gtags Reference" },
+
+  { "<leader>u", group = "Toggle / Usage" },
+  { "<leader>ub", desc = "Toggle Dark Background" },
+  { "<leader>uc", desc = "Toggle Conceal" },
+  { "<leader>ud", desc = "Toggle Diagnostics" },
+  { "<leader>ug", desc = "Toggle Indent" },
+  { "<leader>uh", desc = "Toggle Inlay Hints" },
+  { "<leader>ul", desc = "Toggle Line Number" },
+  { "<leader>uL", desc = "Toggle Relative Number" },
+  { "<leader>us", desc = "Toggle Spelling" },
+  { "<leader>uT", desc = "Toggle Treesitter" },
+  { "<leader>uw", desc = "Toggle Wrap" },
+  { "<leader>uD", desc = "Toggle Dim" },
+  { "<leader>uI", desc = "Toggle Image" },
+})

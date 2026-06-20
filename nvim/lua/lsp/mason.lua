@@ -140,6 +140,24 @@ vim.lsp.config('gopls', {
 })
 vim.lsp.enable('gopls')
 
+vim.lsp.config('kotlin_lsp', {
+  cmd = { "intellij-server", "--stdio" },
+  filetypes = { "kotlin" },
+  root_markers = {
+    "settings.gradle",
+    "settings.gradle.kts",
+    "build.gradle",
+    "build.gradle.kts",
+    "pom.xml",
+    ".git",
+  },
+  capabilities = lsp_capabilities,
+  on_attach = function(client, bufnr)
+    signature.on_attach(signature_setup, bufnr)
+  end,
+})
+vim.lsp.enable('kotlin_lsp')
+
 
 vim.lsp.config('eslint', {
   root_markers = { ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js" },

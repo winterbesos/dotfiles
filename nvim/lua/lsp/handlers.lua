@@ -45,9 +45,24 @@ M.setup = function()
 
   vim.diagnostic.config(config)
 
-  -- NOTE: nvim 0.11+ deprecated vim.lsp.with(); border is now passed directly
-  -- to vim.lsp.buf.hover() (see the `gh` keymap below). signatureHelp is
-  -- handled by the lsp_signature plugin in on_attach().
+  vim.keymap.set("n", "K", function()
+    vim.lsp.buf.hover({
+      border = "rounded",
+    })
+  end, { desc = "LSP Hover" })
+
+  vim.keymap.set("n", "<C-k>", function()
+    vim.lsp.buf.signature_help({
+      border = "rounded",
+    })
+  end, { desc = "LSP Signature Help" })
+
+  -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  --   border = "rounded",
+  -- })
+  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  --   border = "rounded",
+  -- })
 end
 
 local function lsp_highlight_document(client)

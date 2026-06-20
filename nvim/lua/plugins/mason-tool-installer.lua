@@ -9,6 +9,7 @@ return {
         "goimports",     -- go imports/formatter
         "gofumpt",       -- go stricter formatter
         "golangci-lint", -- go linter (replaces null-ls golangci_lint diagnostics)
+        "kotlin-lsp",    -- kotlin lsp
         "prettierd",     -- js/ts/vue/css/html/json/yaml/md formatter
       },
       run_on_start = true,
