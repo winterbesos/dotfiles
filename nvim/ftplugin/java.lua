@@ -186,11 +186,13 @@ local config = {
       maven = {
         downloadSources = true,
       },
+      -- These CodeLens providers can trigger expensive workspace scans in large
+      -- Java projects and make jump-list navigation feel blocked.
       implementationsCodeLens = {
-        enabled = true,
+        enabled = false,
       },
       referencesCodeLens = {
-        enabled = true,
+        enabled = false,
       },
       signatureHelp = {
         enabled = true,

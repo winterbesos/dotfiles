@@ -107,6 +107,11 @@ local signature_setup = {
 
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+local function is_file_uri_buffer(bufnr)
+  local uri = vim.uri_from_bufnr(bufnr)
+  return uri:match("^file://") ~= nil
+end
+
 
 vim.lsp.config("basedpyright", {
   settings = {
@@ -124,8 +129,16 @@ vim.lsp.enable('basedpyright')
 vim.lsp.config('gopls', {
   cmd = { "gopls" },
   filetypes = { "go", "gomod" },
-  root_markers = { "go.mod" },
-  -- root_dir = util.root_pattern("go.mod", ".git"),
+  root_dir = function(bufnr, on_dir)
+    if not is_file_uri_buffer(bufnr) then
+      return
+    end
+
+    local root = vim.fs.root(bufnr, { "go.mod" })
+    if root then
+      on_dir(root)
+    end
+  end,
   settings = {
     gopls = {
       analyses = {

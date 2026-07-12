@@ -7,7 +7,7 @@ end
 lightbulb.setup {
     -- LSP client names to ignore
     -- Example: {"sumneko_lua", "null-ls"}
-    ignore = {},
+    ignore = { "jdtls" },
     sign = {
         enabled = false,
         -- Priority of the gutter sign
@@ -49,5 +49,15 @@ lightbulb.setup {
     }
 }
 
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+local lightbulb_group = vim.api.nvim_create_augroup("nvim_lightbulb", { clear = true })
 
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = lightbulb_group,
+    callback = function()
+        if vim.bo.filetype == "java" then
+            return
+        end
+
+        require("nvim-lightbulb").update_lightbulb()
+    end,
+})
