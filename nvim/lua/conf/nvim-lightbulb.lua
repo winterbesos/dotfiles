@@ -7,7 +7,11 @@ end
 lightbulb.setup {
     -- LSP client names to ignore
     -- Example: {"sumneko_lua", "null-ls"}
-    ignore = { "jdtls" },
+    ignore = {
+        clients = { "jdtls" },
+        ft = { "java" },
+        actions_without_kind = false,
+    },
     sign = {
         enabled = false,
         -- Priority of the gutter sign
