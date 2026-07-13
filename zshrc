@@ -64,7 +64,7 @@ fi
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/salo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/salo/.dart-cli-completion/zsh-config.zsh || true
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh" || true
 ## [/Completion]
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -75,7 +75,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # opencode
-export PATH=/Users/salo/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
 # kitty shell integration
 if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then

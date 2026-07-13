@@ -1,4 +1,6 @@
 logs/*
+*.log
+**/*_history.txt
 
 clash/Country.mmdb
 clash/cache.db
@@ -8,4 +10,3 @@ debugger/
 lazygit/state.yml
 
 **/.DS_Store
-

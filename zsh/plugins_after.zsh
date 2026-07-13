@@ -1,7 +1,5 @@
 # External plugins (initialized after)
 
-# Syntax highlighting
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Auto suggestion
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
@@ -13,6 +11,9 @@ source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Syntax highlighting should be loaded after other ZLE plugins.
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [[ "$(tput colors)" == "256" ]]; then
     ZSH_HIGHLIGHT_STYLES[default]=none

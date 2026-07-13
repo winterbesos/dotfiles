@@ -146,18 +146,16 @@ alias peek='tee >(cat 1>&2)'
 # clean window output
 alias clc="clear"
 
-# proxy config for wsl
-hostip=$(cat /etc/resolv.conf |grep -o '(?<=nameserver\ ).*')
-alias setss='export all_proxy="socks5://${hostip}:6153";'
-alias unsetss='unset all_proxy'
+if grep -qi microsoft /proc/version 2>/dev/null; then
+    hostip=$(awk '/^nameserver / { print $2; exit }' /etc/resolv.conf)
+    alias setss='export all_proxy="socks5://${hostip}:6153";'
+    alias unsetss='unset all_proxy'
 
-#  windows exec aliases
-# https://stackoverflow.com/questions/7131670/make-a-bash-alias-that-takes-a-parameter
-# NOTE: bash function can be called from shell command
-chrome() {
-  chrome.exe file://wsl.localhost/Ubuntu-20.04`pwd`/$1
-}
+    chrome() {
+        chrome.exe "file://wsl.localhost/Ubuntu-20.04$(pwd)/$1"
+    }
 
-alias opencwd="explorer.exe ."
-alias img="Honeyview.exe"
-alias typora="Typora.exe"
+    alias opencwd="explorer.exe ."
+    alias img="Honeyview.exe"
+    alias typora="Typora.exe"
+fi

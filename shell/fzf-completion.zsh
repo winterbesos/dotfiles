@@ -329,4 +329,4 @@ bindkey '^I' fzf-completion
 }
 
 
-export PATH="/Users/salo/.config/dotfiles/git-fuzzy/bin:$PATH"
+export PATH="$HOME/.dotfiles/git-fuzzy/bin:$PATH"

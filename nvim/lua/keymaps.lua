@@ -49,7 +49,7 @@ keymap("n", "<leader>q", ":q<cr>", opts)
 keymap("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
 keymap("n", "<leader>D", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
 -- exit whole program
-keymap("n", "ZZ", ":lua require('user.utils').SaveAndExit()<cr>", opts)
+keymap("n", "ZZ", ":lua require('utils').SaveAndExit()<cr>", opts)
 -- remap macro record key
 keymap("n", "Q", "q", opts)
 -- cancel q
@@ -147,11 +147,11 @@ vim.cmd [[ command! FormatSync execute "lua require('conform').format({ async = 
 keymap("n", "<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
 
 -- debug
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint(); require'user.dap.dap-util'.store_breakpoints(true)<cr>", opts)
+keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
 keymap("n", "<leader>dB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", opts)
 -- keymap("n", "<leader>dr", "lua require'dap'.repl.open()<cr>", opts)
 keymap("n", "<leader>dl", "lua require'dap'.run_last()<cr>", opts)
-keymap('n', '<F10>', '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>', opts)
+keymap('n', '<F10>', "<cmd>lua require'dap'.continue()<CR>", opts)
 keymap("n", "<F4>", "<cmd>lua require'dap'.terminate()<cr>", opts)
 keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", opts)
 keymap("n", "<F6>", "<cmd>lua require'dap'.step_over()<cr>", opts)
@@ -180,9 +180,9 @@ vim.cmd(
 
 -- gtags
 -- find functions calling this function
-keymap("n", "<leader>U", ":lua require('user.utils').GtagsRefernce()<cr>", opts)
+keymap("n", "<leader>U", ":lua require('utils').GtagsRefernce()<cr>", opts)
 -- find definition
-keymap("n", "<leader>T", ":lua require('user.utils').GtagsText()<cr>", opts)
+keymap("n", "<leader>T", ":lua require('utils').GtagsText()<cr>", opts)
 
 keymap('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
   expr = true,
