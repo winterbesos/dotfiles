@@ -112,6 +112,39 @@ local function is_file_uri_buffer(bufnr)
   return uri:match("^file://") ~= nil
 end
 
+local function path_exists(path)
+  return path and vim.uv.fs_stat(path) ~= nil
+end
+
+local function has_typescript_sdk(path)
+  return path_exists(vim.fs.joinpath(path, "typescript.js"))
+    or path_exists(vim.fs.joinpath(path, "tsserverlibrary.js"))
+end
+
+local function find_typescript_sdk(root_dir)
+  local candidates = {}
+
+  local function add_candidate(path)
+    if path then
+      table.insert(candidates, path)
+    end
+  end
+
+  add_candidate(vim.env.TYPESCRIPT_SDK)
+  add_candidate(root_dir and vim.fs.joinpath(root_dir, "node_modules", "typescript", "lib"))
+  add_candidate(vim.fs.joinpath(vim.fn.getcwd(), "node_modules", "typescript", "lib"))
+  add_candidate(vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "vue-language-server", "node_modules", "typescript", "lib"))
+
+  for _, candidate in ipairs(candidates) do
+    if has_typescript_sdk(candidate) then
+      return candidate
+    end
+  end
+end
+
+local function vue_language_server_path()
+  return vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "vue-language-server", "node_modules", "@vue", "language-server")
+end
 
 vim.lsp.config("basedpyright", {
   settings = {
@@ -194,6 +227,17 @@ vim.lsp.enable('emmet_ls')
 vim.lsp.config('vue_ls', {
   filetypes = { 'typescript', 'javascript', 'vue' },
   root_markers = { "package.json", "tsconfig.json", ".git" },
+  before_init = function(params, config)
+    local tsdk = find_typescript_sdk(config.root_dir)
+    if tsdk then
+      params.initializationOptions = params.initializationOptions or {}
+      params.initializationOptions.typescript = params.initializationOptions.typescript or {}
+      params.initializationOptions.typescript.tsdk = tsdk
+      config.init_options.typescript.tsdk = tsdk
+    else
+      vim.notify("vue_ls: TypeScript SDK not found", vim.log.levels.WARN)
+    end
+  end,
   on_attach = function(client, bufnr)
     if client.name == "volar" then
       client.server_capabilities.documentFormattingProvider = false
@@ -208,7 +252,7 @@ vim.lsp.config('vue_ls', {
   end,
   init_options = {
     typescript = {
-      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib"
+      tsdk = find_typescript_sdk(vim.fn.getcwd()),
     },
     vue = {
       hybridMode = false,
@@ -216,7 +260,7 @@ vim.lsp.config('vue_ls', {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = vim.fn.getcwd() .. "/node_modules/@vue/language-server",
+        location = vue_language_server_path(),
         languages = { "vue" },
       },
     },
