@@ -44,7 +44,6 @@ source ~/.shell/autocommands.sh
 
 # fzf configs
 source ~/.shell/fzf-completion.zsh
-source ~/.shell/fzf-key-bindings.zsh
 
 
 # Allow local customizations in the ~/.shell_local_after file

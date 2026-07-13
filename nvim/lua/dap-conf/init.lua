@@ -5,6 +5,8 @@
 
 local dap = require('dap')
 dap.set_log_level('TRACE')
+local home = vim.fn.expand("$HOME")
+local local_lua_debugger_path = home .. "/vendor/local-lua-debugger-vscode"
 
 require("nvim-dap-virtual-text").setup {
     enabled = true,                        -- enable this plugin (the default)
@@ -45,14 +47,14 @@ require("nvim-dap-virtual-text").setup {
 dap.adapters["local-lua"] = {
   type = "executable",
   command = "node",
-  args = { "/Users/salo/vendor/local-lua-debugger-vscode/extension/debugAdapter.js"
+  args = { local_lua_debugger_path .. "/extension/debugAdapter.js"
   },
   enrich_config = function(config, on_config)
     if not config["extensionPath"] then
       local c = vim.deepcopy(config)
       -- 💀 If this is missing or wrong you'll see 
       -- "module 'lldebugger' not found" errors in the dap-repl when trying to launch a debug session
-      c.extensionPath = "/Users/salo/vendor/local-lua-debugger-vscode/"
+      c.extensionPath = local_lua_debugger_path .. "/"
       on_config(c)
     else
       on_config(config)
@@ -170,7 +172,7 @@ dap.configurations.python = {
     request = 'launch';
     name = "Launch file with GOT params";
     program = "${file}";
-    args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", "/Users/salo/Downloads/image.jpg", "--type", "ocr", "--device", "cpu"};
+    args = {"--model-name", "srimanth-d/GOT_CPU", "--image-file", home .. "/Downloads/image.jpg", "--type", "ocr", "--device", "cpu"};
     justMyCode = false;
   },
 }
