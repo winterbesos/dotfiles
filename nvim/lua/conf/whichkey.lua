@@ -145,6 +145,8 @@ local mappings = {
   { "<Space>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "File History", nowait = true, remap = false },
   { "<Space>gF", "<cmd>DiffviewFileHistory<CR>", desc = "Project History", nowait = true, remap = false },
   { "<Space>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
+  { "<Space>gm", "<cmd>DiffviewOpen main...HEAD<CR>", desc = "Review main...HEAD", nowait = true, remap = false },
+  { "<Space>gM", "<cmd>DiffviewOpen origin/main...HEAD<CR>", desc = "Review origin/main...HEAD", nowait = true, remap = false },
   { "<Space>gn", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
   { "<Space>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
   { "<Space>gp", "<cmd>DiffviewOpen<CR>", desc = "Diff Project", nowait = true, remap = false },
@@ -152,6 +154,7 @@ local mappings = {
   { "<Space>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
   { "<Space>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
   { "<Space>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
+  { "<Space>gw", "<cmd>DiffviewOpen HEAD<CR>", desc = "Working Tree vs HEAD", nowait = true, remap = false },
   { "<Space>gL", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Lazy git toggle", nowait = true, remap = false },
 
   { "<Space>h", group = "Help", nowait = true, remap = false },
@@ -197,8 +200,11 @@ which_key.add({
   { "<leader>g", group = "Git" },
   { "<leader>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "File History" },
   { "<leader>gF", "<cmd>DiffviewFileHistory<CR>", desc = "Project History" },
+  { "<leader>gm", "<cmd>DiffviewOpen main...HEAD<CR>", desc = "Review main...HEAD" },
+  { "<leader>gM", "<cmd>DiffviewOpen origin/main...HEAD<CR>", desc = "Review origin/main...HEAD" },
   { "<leader>gp", "<cmd>DiffviewOpen<CR>", desc = "Diff Project" },
   { "<leader>gP", "<cmd>DiffviewClose<CR>", desc = "Close Diffview" },
+  { "<leader>gw", "<cmd>DiffviewOpen HEAD<CR>", desc = "Working Tree vs HEAD" },
 
   { "<leader>c", group = "Code / Conflict" },
   { "<leader>ca", desc = "Choose All Versions" },

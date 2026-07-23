@@ -83,3 +83,20 @@ if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then
   kitty-integration
   unfunction kitty-integration
 fi
+
+logcolor() {
+  perl -pe '
+  s/\b(INFO)\b/\e[32m$1\e[0m/g;
+  s/\b(WARN)\b/\e[33m$1\e[0m/g;
+  s/\b(ERROR)\b/\e[31;1m$1\e[0m/g;
+  s/\b(DEBUG)\b/\e[96;1m$1\e[0m/g;
+  s/(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)/\e[36m$1\e[0m/g;
+  s/([a-zA-Z0-9_.-]+\[[0-9.]+\])/\e[35m$1\e[0m/g;
+  s/(Request [a-f0-9-]+)/\e[34;1m$1\e[0m/g;
+  s/(\[(GET|POST|PUT|DELETE|PATCH)\])/\e[33;1m$1\e[0m/g;
+  s/(\[[0-9]{3}\])/\e[32;1m$1\e[0m/g;
+  s/(Response:)/\e[36;1m$1\e[0m/g;
+  s/(Body:)/\e[90m$1\e[0m/g;
+  '
+}
+

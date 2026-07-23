@@ -40,7 +40,7 @@ local options = {
   foldlevel = 99,                          -- if not set this, fold will be everywhere
   spell = false,                            -- add spell support
   spelllang = { 'en_us' },                 -- support which languages?
-  diffopt="vertical,filler,internal,context:4",                      -- vertical diff split view
+  diffopt="vertical,filler,internal,context:12",                     -- vertical diff split view
   -- cscopequickfix="s-,c-,d-,i-,t-,e-",       -- cscope output to quickfix window
 }
 
@@ -49,6 +49,8 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.opt.fillchars:append({ diff = " " })
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
