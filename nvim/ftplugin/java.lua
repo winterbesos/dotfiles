@@ -67,7 +67,7 @@ if java_debug_bundle ~= "" then
 end
 
 local java_test_path = mason_path .. "/packages/java-test/extension/server/"
-local java_test_bundles = vim.split(vim.fn.glob(java_test_path .. "*.jar", true), "\n", { trimempty = true })
+local java_test_bundles = vim.split(vim.fn.glob(java_test_path .. "com.microsoft.java.test.plugin-*.jar", true), "\n", { trimempty = true })
 
 for _, bundle in ipairs(java_test_bundles) do
   table.insert(bundles, bundle)
